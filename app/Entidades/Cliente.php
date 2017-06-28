@@ -34,6 +34,15 @@ class Cliente extends Model
          public function estado() {
         return $this->belongsTo('app\Entidades\Estado');
     }
+
+   public static function buscarCedula($cedula){
+
+        $lstCliente = Cliente::where('cedula','=',$cedula)
+                                   ->orderBy('cliente_id', 'desc')->first();
+
+        return  $lstCliente; 
+
+   }
 }
 
 

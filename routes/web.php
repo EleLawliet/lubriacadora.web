@@ -22,6 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 //  -- Inicio  Wsdl de android 
 Route::get('/comunidades/listado', 'LubricadoraWsdl\LubricadoraWsdlController@getListado');
 
+// con parametro
 Route::get('/datosCliente', 'LubricadoraWsdl\LubricadoraWsdlController@datosXCliente');
 //   Fin   //
 

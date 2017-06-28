@@ -25,6 +25,7 @@ class LubricadoraWsdlController extends Controller
 
 		try {
 			//grid de las comuidades ya renderizado para mostrar en patalla
+			
 			$objCliente =  Cliente::all();
 			
 		
@@ -42,7 +43,8 @@ class LubricadoraWsdlController extends Controller
     		try {
 
     			//se recuperan los datos por comunidad
-    			$datos = Cliente::find($request->codigo);
+				 $datos = Cliente::buscarCedula($request->cedula);
+    			
     			 
     			//se arma e inicializa el codigo y el response de la firma
     			$statusCode = 200;
@@ -52,7 +54,8 @@ class LubricadoraWsdlController extends Controller
     					'mensaje' => 'Consulta de datos exitosa!',
     					'datos' => ['nombre' => $datos->nombre
 		    							,'apellido' => $datos->apellido
-		    							,'cedula' => $datos->cedula]
+		    							,'cedula' => $datos->cedula
+										,'email' => $datos->correo]
     			];
     		} catch (\RuntimeException $e) {
     			//ocurre un error recuperando los datos por comunidad
