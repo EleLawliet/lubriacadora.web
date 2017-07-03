@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Fast Duty') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -29,7 +29,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                      Fast Duty
                     </a>
                 </div>
 
@@ -47,10 +47,7 @@
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
 
-                               <li><a href="tipoServicio">HOLA    </a></li>
-                               <li><a href="{{ route('login') }}">Cliente</a></li>
-                               <li><a href="{{ route('login') }}">sdfsdfsdf</a></li>
-                                <li><a href="{{ route('login') }}">Login</a></li>
+                             
 
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -82,5 +79,20 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <style>
+       @import url(http://fonts.googleapis.com/css?family=Ubuntu:400,700);
+        body {
+            background: white url(../images/gallery/imagenLogin.jpg) no-repeat center top;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            background-size: cover;
+                        background-attachment: fixed;
+                       
+        }
+
+        .fa-btn {
+            margin-right: 6px;
+        }
+    </style>
 </body>
 </html>

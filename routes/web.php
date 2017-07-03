@@ -30,4 +30,7 @@ Route::get('/datosCliente', 'LubricadoraWsdl\LubricadoraWsdlController@datosXCli
 //   -- Inicio Pantalla de Tipo de servicios
 Route::resource('/tipoServicio',  'Servicios\TipoServicioController');
 
+Route::post('/eliminaTipoServicio',  'Servicios\TipoServicioController@eliminaTipoServicio');
+Route::post('/guardarTipoServicio',  'Servicios\TipoServicioController@guardarTipoServicio');
+
 //   Fin //
