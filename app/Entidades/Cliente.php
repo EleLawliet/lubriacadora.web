@@ -31,13 +31,13 @@ class Cliente extends Model
         'fecha_registro',
         'estado_id'];
 
-         public function estado() {
-        return $this->belongsTo('app\Entidades\Estado');
+    public function estado() {
+        return $this->belongsTo('App\Entidades\Estado');
     }
 
    public static function buscarCedula($cedula){
 
-        $lstCliente = Cliente::where('cedula','=',$cedula)
+        $lstCliente = Cliente::with('estado')->where('cedula','=',$cedula)
                                    ->orderBy('cliente_id', 'desc')->first();
 
         return  $lstCliente; 

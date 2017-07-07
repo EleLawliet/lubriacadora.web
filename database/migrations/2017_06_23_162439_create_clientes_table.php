@@ -13,8 +13,8 @@ class CreateClientesTable extends Migration
      */
     public function up()
     {
-        Schema::create('clientes', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('cliente', function (Blueprint $table) {
+            $table->increments('cliente_id');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ class CreateClientesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clientes');
+        Schema::dropIfExists('cliente');
     }
 }

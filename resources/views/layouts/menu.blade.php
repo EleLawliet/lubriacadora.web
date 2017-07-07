@@ -38,14 +38,13 @@
         <link rel="stylesheet" href="../css/ace-rtl.min.css" />
 
 
-        {!!Html::script('js/jquery-3.0.0.js') !!}
-    {!!Html::script('js/jquery-ui.min.js') !!}
-    
-    {!!Html::script('../js/bootbox.min.js') !!}
-    
-    {!!Html::script('../js/jquery.js') !!}
-    {!!Html::script('../js/jquery-2.1.4.min.js') !!}
-    {!!Html::script('../js/jquery.BlockUI.js') !!}
+        {!!Html::script('../js/jquery-3.0.0.js') !!}
+        {!!Html::script('../js/jquery-ui.min.js') !!}      
+        {!!Html::script('../js/bootbox.min.js') !!}
+        {!!Html::script('../js/jquery.js') !!}
+        {!!Html::script('../js/jquery-2.1.4.min.js') !!}
+        {!!Html::script('../js/jquery.BlockUI.js') !!}
+        {!!Html::script('../js/jquery.js') !!}
         <!--[if lte IE 9]>
           <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
         <![endif]-->
@@ -55,12 +54,16 @@
         <!-- ace settings handler -->
         <script src="../js/ace-extra.min.js"></script>
 
-        <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+        
+        {!!Html::style('../css/dataTables/dataTables.bootstrap.min.css') !!}
+        {!!Html::style('../css/dataTables/responsive.bootstrap.min.css') !!}
+        <!-- JQUERY -->
+        {!!Html::script('../js/dataTables/jquery.dataTables.min.js')!!}
+        {!!Html::script('../js/dataTables/dataTables.bootstrap.min.js')!!}
+        {!!Html::script('../js/dataTables/jquery.selectable-list.js')!!}
+       
 
-        <!--[if lte IE 8]>
-        <script src="assets/js/html5shiv.min.js"></script>
-        <script src="assets/js/respond.min.js"></script>
-        <![endif]-->
+
     </head>
 
     <body class="no-skin">
@@ -163,217 +166,12 @@
                 </div><!-- /.sidebar-shortcuts -->
 
                 <ul class="nav nav-list">
-                    <li class="active">
-                        <a href="home">
-                            <i class="menu-icon fa fa-tachometer"></i>
-                            <span class="menu-text"> Lubriauto </span>
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-
-                    <li class="">
-                        <a href="#" class="dropdown-toggle">
-                            <i class="menu-icon fa fa-desktop"></i>
-                            <span class="menu-text">
-                                Mantenimiento;
-                            </span>
-
-                            <b class="arrow fa fa-angle-down"></b>
-                        </a>
-
-                        <b class="arrow"></b>
-
-                        <ul class="submenu">
-                            <li class="">
-                                <a href="" class="dropdown-toggle">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-
-                                    Tipo servicio
-                                    <b class="arrow fa fa-angle-down"></b>
-                                </a>
-
-                                <b class="arrow"></b>
-
-                                <ul class="submenu">
-                                    <li class="">
-                                        <a href="top-menu.html">
-                                            <i class="menu-icon fa fa-caret-right"></i>
-                                            Top Menu
-                                        </a>
-
-                                        <b class="arrow"></b>
-                                    </li>
-
-                                    <li class="">
-                                        <a href="two-menu-1.html">
-                                            <i class="menu-icon fa fa-caret-right"></i>
-                                            Two Menus 1
-                                        </a>
-
-                                        <b class="arrow"></b>
-                                    </li>
-
-                                    <li class="">
-                                        <a href="two-menu-2.html">
-                                            <i class="menu-icon fa fa-caret-right"></i>
-                                            Two Menus 2
-                                        </a>
-
-                                        <b class="arrow"></b>
-                                    </li>
-
-                                    <li class="">
-                                        <a href="mobile-menu-1.html">
-                                            <i class="menu-icon fa fa-caret-right"></i>
-                                            Default Mobile Menu
-                                        </a>
-
-                                        <b class="arrow"></b>
-                                    </li>
-
-                                    <li class="">
-                                        <a href="mobile-menu-2.html">
-                                            <i class="menu-icon fa fa-caret-right"></i>
-                                            Mobile Menu 2
-                                        </a>
-
-                                        <b class="arrow"></b>
-                                    </li>
-
-                                    <li class="">
-                                        <a href="mobile-menu-3.html">
-                                            <i class="menu-icon fa fa-caret-right"></i>
-                                            Mobile Menu 3
-                                        </a>
-
-                                        <b class="arrow"></b>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li class="">
-                                <a href="typography.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Typography
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
-
-                            <li class="">
-                                <a href="elements.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Elements
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
-
-                            <li class="">
-                                <a href="buttons.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Buttons &amp; Icons
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
-
-                            <li class="">
-                                <a href="content-slider.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Content Sliders
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
-
-                            <li class="">
-                                <a href="treeview.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Treeview
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
-
-                            <li class="">
-                                <a href="jquery-ui.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    jQuery UI
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
-
-                            <li class="">
-                                <a href="nestable-list.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Nestable Lists
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
-
-                            <li class="">
-                                <a href="#" class="dropdown-toggle">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-
-                                    Three Level Menu
-                                    <b class="arrow fa fa-angle-down"></b>
-                                </a>
-
-                                <b class="arrow"></b>
-
-                                <ul class="submenu">
-                                    <li class="">
-                                        <a href="#">
-                                            <i class="menu-icon fa fa-leaf green"></i>
-                                            Item #1
-                                        </a>
-
-                                        <b class="arrow"></b>
-                                    </li>
-
-                                    <li class="">
-                                        <a href="#" class="dropdown-toggle">
-                                            <i class="menu-icon fa fa-pencil orange"></i>
-
-                                            4th level
-                                            <b class="arrow fa fa-angle-down"></b>
-                                        </a>
-
-                                        <b class="arrow"></b>
-
-                                        <ul class="submenu">
-                                            <li class="">
-                                                <a href="#">
-                                                    <i class="menu-icon fa fa-plus purple"></i>
-                                                    Add Product
-                                                </a>
-
-                                                <b class="arrow"></b>
-                                            </li>
-
-                                            <li class="">
-                                                <a href="#">
-                                                    <i class="menu-icon fa fa-eye pink"></i>
-                                                    View Products
-                                                </a>
-
-                                                <b class="arrow"></b>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
+                   
 
                     <li class="">
                         <a href="#" class="dropdown-toggle">
                             <i class="menu-icon fa fa-list"></i>
-                            <span class="menu-text"> Cliente </span>
+                            <span class="menu-text"> Mantenimiento </span>
 
                             <b class="arrow fa fa-angle-down"></b>
                         </a>
@@ -382,9 +180,9 @@
 
                         <ul class="submenu">
                             <li class="">
-                                <a href="tables.html">
+                                <a href="tipoServicio">
                                     <i class="menu-icon fa fa-caret-right"></i>
-                                    Simple &amp; Dynamic
+                                    Tipo Servicio
                                 </a>
 
                                 <b class="arrow"></b>
@@ -404,7 +202,7 @@
                     <li class="">
                         <a href="#" class="dropdown-toggle">
                             <i class="menu-icon fa fa-pencil-square-o"></i>
-                            <span class="menu-text"> Automovil </span>
+                            <span class="menu-text"> Referencial </span>
 
                             <b class="arrow fa fa-angle-down"></b>
                         </a>
@@ -413,9 +211,9 @@
 
                         <ul class="submenu">
                             <li class="">
-                                <a href="tipoServicio">
+                                <a href="cliente">
                                     <i class="menu-icon fa fa-caret-right"></i>
-                                    Tipo servicio
+                                    Registro de cliente
                                 </a>
 
                                 <b class="arrow"></b>
@@ -460,9 +258,9 @@
                     </li>
 
                     <li class="">
-                        <a href="widgets.html">
+                        <a href="">
                             <i class="menu-icon fa fa-list-alt"></i>
-                            <span class="menu-text"> Widgets </span>
+                            <span class="menu-text"> Referenciales </span>
                         </a>
 
                         <b class="arrow"></b>
@@ -496,7 +294,7 @@
                     <li class="">
                         <a href="#" class="dropdown-toggle">
                             <i class="menu-icon fa fa-tag"></i>
-                            <span class="menu-text"> More Pages </span>
+                            <span class="menu-text"> Referenciales </span>
 
                             <b class="arrow fa fa-angle-down"></b>
                         </a>
@@ -672,24 +470,36 @@
         <!--[if lte IE 8]>
           <script src="assets/js/excanvas.min.js"></script>
         <![endif]-->
-        <script src="../js/jquery-ui.custom.min.js"></script>
-        <script src="../js/jquery.ui.touch-punch.min.js"></script>
-        <script src="../js/jquery.easypiechart.min.js"></script>
-        <script src="../js/jquery.sparkline.index.min.js"></script>
-        <script src="../js/jquery.flot.min.js"></script>
-        <script src="../js/jquery.flot.pie.min.js"></script>
-        <script src="../js/jquery.flot.resize.min.js"></script>
-
-        <!-- ace scripts -->
-        <script src="../js/ace-elements.min.js"></script>
-        <script src="../js/ace.min.js"></script>
-        {!!Html::script('../js/jquery.js') !!}
-        <script src="../js/jquery-3.0.0.js"></script>
-        <script src="../js/jquery-ui.min.js"></script>
-        <script src="../js/bootbox.min.js"></script>
-        
+<!-- DataTables JavaScript -->
+    
 
        
+
+    <script src="../js/jquery-ui.custom.min.js"></script>
+    <script src="../js/jquery.ui.touch-punch.min.js"></script>
+    <script src="../js/jquery.easypiechart.min.js"></script>
+    <script src="../js/jquery.sparkline.index.min.js"></script>
+    <script src="../js/jquery.flot.min.js"></script>
+    <script src="../js/jquery.flot.pie.min.js"></script>
+    <script src="../js/jquery.flot.resize.min.js"></script>
+
+    <!-- ace scripts -->
+    <script src="../js/ace-elements.min.js"></script>
+    <script src="../js/ace.min.js"></script>
+   
+    <script src="../js/jquery-3.0.0.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+    <script src="../js/bootbox.min.js"></script>
+      
+    <script src="../bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="../bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+    <script src="../js/dataTables/jquery.selectable-list.js"></script>
+      
+    <script src="../js/dataTables/jquery.selectable-list.js"></script>
+    
+    
+    <script src="../js/dataTables/dataTables.responsive.min.js"></script>
+
     
     
 

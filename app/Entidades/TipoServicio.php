@@ -3,11 +3,11 @@
 namespace App\Entidades;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Entidades\Estado;
+
 class TipoServicio extends Model
 {
-    public    $timestamps = false;
-    protected $primaryKey = 'tipo_servicio_id';
+   
+    
 
     /**
      * The database table used by the model.
@@ -15,7 +15,7 @@ class TipoServicio extends Model
      * @var string
      */
     protected  $table = 'tipo_servicio';
-
+    protected $primaryKey = 'tipo_servicio_id';
     /**
      * The attributes that are mass assignable.
      *
@@ -29,17 +29,28 @@ class TipoServicio extends Model
         'usuario_modificacion',
         'estado_id'];
 
+     public    $timestamps = false;
+
     public function estado() {
-        return $this->belongsTo('app\Entidades\Estado');
+
+        return $this->belongsTo('App\Entidades\Estado', 'estado_id');
+
     }
 
     public static function cargarTipoServicios(){
 
-    	$lstTipoServicio = TipoServicio::where('estado_id','=',1)
-                                   ->orderBy('tipo_servicio_id', 'desc')->get();
+    $lstTipoServicio = TipoServicio::with('estado')->get();
 
-        return $lstTipoServicio;                          
+    /*$lstTipoServicio = \DB::table('tipo_servicio')
+            ->select(['tipo_servicio.nombre as nombreTipoServicio',
+                       'tipo_servicio.tipo_servicio_id as tipo_servicio_id',
+                       'estado.nombre as nombreEstado',
+                       'estado.estado_id as estado_id'])
+            ->join('estado','tipo_servicio.estado_id','=','estado.estado_id')
+            ->orderBy('estado.estado_id','asc')->get();
+       */
+        return $lstTipoServicio;  
 
-    }
+     }
 
 }

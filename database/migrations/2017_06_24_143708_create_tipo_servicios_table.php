@@ -13,8 +13,8 @@ class CreateTipoServiciosTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_servicios', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('tipo_servicio', function (Blueprint $table) {
+            $table->increments('tipo_servicio_id');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ class CreateTipoServiciosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipo_servicios');
+        Schema::dropIfExists('tipo_servicio');
     }
 }
