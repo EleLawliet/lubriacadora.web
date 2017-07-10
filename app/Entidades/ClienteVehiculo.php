@@ -38,17 +38,36 @@ class ClienteVehiculo extends Model
 
     }
 
-    public function vehiculo() {
+    public function cliente() {
 
         return $this->belongsTo('App\Entidades\Cliente', 'cliente_id');
 
     }
 
-    public function cliente() {
+    public function vehiculo() {
 
-        return $this->belongsTo('App\Entidades\Vehiculo', 'vehicul');
+        return $this->belongsTo('App\Entidades\Vehiculo', 'vehiculo_id');
 
     }
 
+    public static function buscarClienteVeiculo($cliente_id){
+
+        $lstClienteVehiculo = ClienteVehiculo::with('vehiculo')->where('cliente_id','=',$cliente_id)
+                                   ->orderBy('cliente_vehiculo_id', 'desc')->get();
+
+        return  $lstClienteVehiculo; 
+     }
+
+     /**
+     * 	Jose Luis Rendon Ortiz
+     *  9/junio/2017
+     **/
+
+     public static function buscarClienteVeiculoXId($cliente_id){
+
+        $lstClienteVehiculo = ClienteVehiculo::with('estado','vehiculo','cliente', 'vehiculo.claseVehiculo')->where('cliente_id','=',$cliente_id)->orderBy('cliente_vehiculo_id', 'desc')->get();
+
+        return  $lstClienteVehiculo; 
+     }
 
 }

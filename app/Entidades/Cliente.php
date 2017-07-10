@@ -43,6 +43,14 @@ class Cliente extends Model
         return  $lstCliente; 
 
    }
+    /**
+    * Jose Luis Rendon Ortiz
+    * Metodo para cargar cliente x cedula
+    * 9/julio/2017
+    */
+
+
+  
 }
 
 

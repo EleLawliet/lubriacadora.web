@@ -451,7 +451,7 @@
 
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+   
     <!--[if !IE]> -->
         <script src="../js/jquery-2.1.4.min.js"></script>
 

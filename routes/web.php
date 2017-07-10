@@ -40,3 +40,6 @@ Route::post('/cambioEstado',     'Servicios\TipoServicioController@cambioEstado'
 // --Inicio Pantalla de Cliente Automovil
 
 Route::resource('/cliente',  'Referencial\ClienteController');
+Route::post('/ingresoClienteVehiculo',  'Referencial\ClienteController@ingresoClienteVehiculo');
+Route::post('/cargarPorCedula',  'Referencial\ClienteController@cargarPorCedula');
+
