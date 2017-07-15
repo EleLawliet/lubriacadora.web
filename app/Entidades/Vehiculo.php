@@ -47,6 +47,8 @@ class Vehiculo extends Model
         return $this->belongsTo('App\Entidades\ClaseVehiculo', 'clase_vehiculo_id')->withDefault();
     }
 
+    
+
     public static function cargarVehiculo(){
       $lstTipoServicio = Vehiculo::with('estado','claseVehiculo')->get();     
       return $lstTipoServicio;  

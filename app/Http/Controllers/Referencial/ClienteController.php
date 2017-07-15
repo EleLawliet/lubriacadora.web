@@ -33,6 +33,7 @@ class ClienteController extends Controller
     public function index()
     {
           $lstClaseVehiculo=ClaseVehiculo::all();
+           $lstEstado=Estado::all();
          /* $lstVehiculo=ClienteVehiculo::buscarClienteVeiculo(50);
            
           $lstVehiculos=  Array();
@@ -51,73 +52,175 @@ class ClienteController extends Controller
         return Response::json($lstVehiculos, 200);
        //  return Response::json($response, $statusCode);
 */
-          return view('Referencial.clienteVehiculo', compact('lstClaseVehiculo'));
+          return view('Referencial.clienteVehiculo', compact('lstClaseVehiculo','lstEstado'));
     }
 
     public function ingresoClienteVehiculo(Request $request){
 
-   
-        
-        $cliente=$request->cliente;
-        
-        
-          for($d=0; $d <count($cliente); $d++){    
+         try { 
 
-             
-                 $objCliente = new Cliente();
-                $objCliente->nombre=$cliente['nombre'];
-                $objCliente->apellido=$cliente['apellido'];
-                $objCliente->cedula=$cliente['cedula'];
-                $objCliente->telefono=$cliente['telefono'];
-                $objCliente->movil=$cliente['movil'];
-                $objCliente->correo=$cliente['correo'];
-                $objCliente->direccion=$cliente['direccion'];
-                $objCliente->fecha_registro=Carbon::now();
-                $objCliente->estado_id=Estado::$estadoActivo;
+         if((empty($request->cliente_id)) || $request->cliente_id==null){    
+
+
+                $cliente= new Cliente();
+                $lstcliente=$request->cliente;
+                
+               
+                  for($i=0; $i<count($lstcliente); $i++){    
+
+                        
+                        $objCliente = new Cliente();
+                        $objCliente->nombre=$lstcliente['nombre'];
+                        $objCliente->apellido=$lstcliente['apellido'];
+                        $objCliente->cedula=$lstcliente['cedula'];
+                        $objCliente->telefono=$lstcliente['telefono'];
+                        $objCliente->movil=$lstcliente['movil'];
+                        $objCliente->correo=$lstcliente['correo'];
+                        $objCliente->direccion=$lstcliente['direccion'];
+                        $objCliente->fecha_registro=Carbon::now();
+                        $objCliente->estado_id=Estado::$estadoActivo;
+                         
+                }
+
+                 $objCliente->save();
+
+                $lstVehiculo= new Vehiculo();
+                $lstVehiculo=$request->lstVehiculos;
+                $ciente_id=$objCliente->cliente_id;
+                 
+                
+                for($d=0; $d <count($lstVehiculo); $d++){
+                    
+
+                    $objVehiculo= new Vehiculo();
+                    $objVehiculo->clase_vehiculo_id=$lstVehiculo[$d]['clase_vehiculo_id'];
+                    $objVehiculo->estado_id=$lstVehiculo[$d]['estado_id'];
+                    $objVehiculo->marca=$lstVehiculo[$d]['marca'];
+                    $objVehiculo->color=$lstVehiculo[$d]['color'];
+                    $objVehiculo->placa=$lstVehiculo[$d]['placa'];
+                    $objVehiculo->uso_personal=$lstVehiculo[$d]['uso_personal'];
+                    $objVehiculo->anio=$lstVehiculo[$d]['anio'];
+                    $objVehiculo->fecha_ingreso=Carbon::now();
+                    $objVehiculo->usuario_ingreso=Auth::user()->id;
+                    $objVehiculo->save();
+
+
+                    $objClienteVehiculo = new  ClienteVehiculo();
+                    $objClienteVehiculo->cliente_id=$objCliente->cliente_id;
+                    $objClienteVehiculo->vehiculo_id=$objVehiculo->vehiculo_id;
+                    $objClienteVehiculo->estado_id=$lstVehiculo[$d]['estado_id'];
+                    $objClienteVehiculo->fecha_ingreso=Carbon::now();
+                    $objClienteVehiculo->usuario_ingreso=Auth::user()->id;
+                    $objClienteVehiculo->save();
+
+                }
+            
+         
+        }else{
+
+               $cliente= new Cliente();
+               $cliente=$request->cliente;
+                  for($i=0; $i <count($cliente); $i++){    
+                        $objCliente = Cliente::find($request->cliente_id);
+                        $objCliente->nombre=$cliente['nombre'];
+                        $objCliente->apellido=$cliente['apellido'];
+                        $objCliente->cedula=$cliente['cedula'];
+                        $objCliente->telefono=$cliente['telefono'];
+                        $objCliente->movil=$cliente['movil'];
+                        $objCliente->correo=$cliente['correo'];
+                        $objCliente->direccion=$cliente['direccion'];
+                        $objCliente->fecha_registro=Carbon::now();
+                        $objCliente->estado_id=Estado::$estadoActivo;                      
+                }
+
                 $objCliente->save();
-        }
-        $lstVehiculo= new Vehiculo();
-        $lstVehiculo=$request->lstVehiculos;
 
-         
+                $lstVehiculo= new Vehiculo();
+                $lstVehiculo=$request->lstVehiculos;
+
+                
+                 $objClienteVehiculo= ClienteVehiculo::buscarClienteVeiculoXId($objCliente->cliente_id);
+
+                 foreach ($objClienteVehiculo as $key ) {
+
+                    for($d=0; $d <count($lstVehiculo); $d++){
+                            
+                            if($key->vehiculo_id==$lstVehiculo[$d]['vehiculo_id']){
+
+                                $objVehiculo= new Vehiculo();
+                                $objVehiculo=  Vehiculo::find($lstVehiculo[$d]['vehiculo_id']);
+
+                                $objVehiculo->clase_vehiculo_id=$lstVehiculo[$d]['clase_vehiculo_id'];
+                                $objVehiculo->estado_id=$lstVehiculo[$d]['estado_id'];
+                                $objVehiculo->marca=$lstVehiculo[$d]['marca'];
+                                $objVehiculo->color=$lstVehiculo[$d]['color'];
+                                $objVehiculo->placa=$lstVehiculo[$d]['placa'];
+                                $objVehiculo->uso_personal=$lstVehiculo[$d]['uso_personal'];
+                                $objVehiculo->anio=$lstVehiculo[$d]['anio'];
+                                $objVehiculo->fecha_modificacion=Carbon::now();
+                                $objVehiculo->usuario_modificacion=Auth::user()->id;
+                                $objVehiculo->save();
+                                break;
+
+                            }  
+
+                    }
         
-        for($d=0; $d <count($lstVehiculo); $d++){
-            
+               }    
 
+            for($d=0; $d <count($lstVehiculo); $d++){
 
-            $objVehiculo= new Vehiculo();
+                   if($lstVehiculo[$d]['cliente_vehiculo_id']=="" || $lstVehiculo[$d]['cliente_vehiculo_id']==null){
 
-            $objVehiculo->clase_vehiculo_id=$lstVehiculo[$d]['clase_vehiculo_id'];
-            $objVehiculo->estado_id=Estado::$estadoActivo;
-            $objVehiculo->marca=$lstVehiculo[$d]['marca'];
-            $objVehiculo->color=$lstVehiculo[$d]['color'];
-            $objVehiculo->placa=$lstVehiculo[$d]['placa'];
-            $objVehiculo->uso_personal=$lstVehiculo[$d]['uso_personal'];
-            $objVehiculo->anio=$lstVehiculo[$d]['anio'];
-            $objVehiculo->fecha_ingreso=Carbon::now();
-            $objVehiculo->usuario_ingreso=Auth::user()->id;
-            $objVehiculo->save();
+                                        $objVehiculo= new Vehiculo();
+                                        $objVehiculo->clase_vehiculo_id=$lstVehiculo[$d]['clase_vehiculo_id'];
+                                        $objVehiculo->estado_id=$lstVehiculo[$d]['estado_id'];
+                                        $objVehiculo->marca=$lstVehiculo[$d]['marca'];
+                                        $objVehiculo->color=$lstVehiculo[$d]['color'];
+                                        $objVehiculo->placa=$lstVehiculo[$d]['placa'];
+                                        $objVehiculo->uso_personal=$lstVehiculo[$d]['uso_personal'];
+                                        $objVehiculo->anio=$lstVehiculo[$d]['anio'];
+                                        $objVehiculo->fecha_ingreso=Carbon::now();
+                                        $objVehiculo->usuario_ingreso=Auth::user()->id;
+                                        $objVehiculo->save();
 
+                                        $objClienteVehiculo = new  ClienteVehiculo();
+                                        $objClienteVehiculo->cliente_id=$objCliente->cliente_id;
+                                        $objClienteVehiculo->vehiculo_id=$objVehiculo->vehiculo_id;
+                                        $objClienteVehiculo->estado_id=$lstVehiculo[$d]['estado_id'];
+                                        $objClienteVehiculo->fecha_ingreso=Carbon::now();
+                                        $objClienteVehiculo->usuario_ingreso=Auth::user()->id;
+                                        $objClienteVehiculo->save();
+                                        break ;
+                                }
+                }                 
 
-            $objClienteVehiculo = new  ClienteVehiculo();
-            $objClienteVehiculo->cliente_id=$objCliente->cliente_id;
-            $objClienteVehiculo->vehiculo_id=$objVehiculo->vehiculo_id;
-            $objClienteVehiculo->estado_id=Estado::$estadoActivo;
-            $objClienteVehiculo->fecha_ingreso=Carbon::now();
-            $objClienteVehiculo->usuario_ingreso=Auth::user()->id;
-            $objClienteVehiculo->save();
+        }      
 
-        }
-            
-         
+       }catch(\Exception $e){
+                    Session::flash('message',$e->getMessage());
+                   return redirect()->back();
+           } 
+        
+
+        Session::flash('message', 'Se ha guardado con exíto. ');
+
     }
 
 
    public function cargarPorCedula(Request $request){
 
         $objCliente= Cliente::buscarCedula($request->cedula);
-        $objClienteVehiculo= ClienteVehiculo::buscarClienteVeiculoXId($objCliente->cliente_id);
-        return $objClienteVehiculo;
+
+
+        if($objCliente!=null || $objCliente!=""){
+
+                $objClienteVehiculo= ClienteVehiculo::buscarClienteVeiculoXId($objCliente->cliente_id);
+                return $objClienteVehiculo;
+
+        }else{
+            return $objClienteVehiculo=new ClienteVehiculo();
+        }
 
    }
     

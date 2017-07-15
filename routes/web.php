@@ -43,3 +43,8 @@ Route::resource('/cliente',  'Referencial\ClienteController');
 Route::post('/ingresoClienteVehiculo',  'Referencial\ClienteController@ingresoClienteVehiculo');
 Route::post('/cargarPorCedula',  'Referencial\ClienteController@cargarPorCedula');
 
+// --Inicio Pantalla de Clase vehicuo servicio
+Route::resource('/claseVehiculoServicio',  'Referencial\ClaseVehiculoServicioController');
+Route::post('/guardarClaseServicio',  'Referencial\ClaseVehiculoServicioController@guardarClaseServicio');
+Route::post('/validaClaseVehiculoXtipoServicio',  'Referencial\ClaseVehiculoServicioController@validaClaseVehiculoXtipoServicio');
+

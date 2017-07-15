@@ -53,7 +53,7 @@
 
         <!-- ace settings handler -->
         <script src="../js/ace-extra.min.js"></script>
-
+        <script http="http://malsup.github.io/jquery.blockUI.js"></script>
         
         {!!Html::style('../css/dataTables/dataTables.bootstrap.min.css') !!}
         {!!Html::style('../css/dataTables/responsive.bootstrap.min.css') !!}
@@ -80,7 +80,7 @@
                 </button>
 
                 <div class="navbar-header pull-left">
-                    <a href="index.html" class="navbar-brand">
+                    <a href="home" class="navbar-brand">
                         <small>
                            <img style="width: 36%;" src="../images/logo/Lubriauto.png" class="msg-photo" alt="Alex's Avatar" />
                        
@@ -188,14 +188,7 @@
                                 <b class="arrow"></b>
                             </li>
 
-                            <li class="">
-                                <a href="jqgrid.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    jqGrid plugin
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
+                            
                         </ul>
                     </li>
 
@@ -220,9 +213,9 @@
                             </li>
 
                             <li class="">
-                                <a href="form-elements-2.html">
+                                <a href="claseVehiculoServicio">
                                     <i class="menu-icon fa fa-caret-right"></i>
-                                    Form Elements 2
+                                     Registro Clases de Servicio
                                 </a>
 
                                 <b class="arrow"></b>
@@ -257,44 +250,15 @@
                         </ul>
                     </li>
 
-                    <li class="">
-                        <a href="">
-                            <i class="menu-icon fa fa-list-alt"></i>
-                            <span class="menu-text"> Referenciales </span>
-                        </a>
+                   
+                   
 
-                        <b class="arrow"></b>
-                    </li>
-
-                    <li class="">
-                        <a href="calendar.html">
-                            <i class="menu-icon fa fa-calendar"></i>
-
-                            <span class="menu-text">
-                                Calendar
-
-                                <span class="badge badge-transparent tooltip-error" title="2 Important Events">
-                                    <i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i>
-                                </span>
-                            </span>
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-
-                    <li class="">
-                        <a href="gallery.html">
-                            <i class="menu-icon fa fa-picture-o"></i>
-                            <span class="menu-text"> Gallery </span>
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
+                   
 
                     <li class="">
                         <a href="#" class="dropdown-toggle">
                             <i class="menu-icon fa fa-tag"></i>
-                            <span class="menu-text"> Referenciales </span>
+                            <span class="menu-text"> Transaccionales </span>
 
                             <b class="arrow fa fa-angle-down"></b>
                         </a>
@@ -376,68 +340,7 @@
                         </ul>
                     </li>
 
-                    <li class="">
-                        <a href="#" class="dropdown-toggle">
-                            <i class="menu-icon fa fa-file-o"></i>
-
-                            <span class="menu-text">
-                                Other Pages
-
-                                <span class="badge badge-primary">5</span>
-                            </span>
-
-                            <b class="arrow fa fa-angle-down"></b>
-                        </a>
-
-                        <b class="arrow"></b>
-
-                        <ul class="submenu">
-                            <li class="">
-                                <a href="faq.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    FAQ
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
-
-                            <li class="">
-                                <a href="error-404.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Error 404
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
-
-                            <li class="">
-                                <a href="error-500.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Error 500
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
-
-                            <li class="">
-                                <a href="grid.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Grid
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
-
-                            <li class="">
-                                <a href="blank.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Blank Page
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
-                        </ul>
-                    </li>
+                 
                 </ul><!-- /.nav-list -->
 
                 <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
@@ -474,19 +377,19 @@
     
 
        
-
+    <script src="../js/jquery.blockUI.js"></script>
     <script src="../js/jquery-ui.custom.min.js"></script>
     <script src="../js/jquery.ui.touch-punch.min.js"></script>
-    <script src="../js/jquery.easypiechart.min.js"></script>
+  <!--  <script src="../js/jquery.easypiechart.min.js"></script>
     <script src="../js/jquery.sparkline.index.min.js"></script>
     <script src="../js/jquery.flot.min.js"></script>
     <script src="../js/jquery.flot.pie.min.js"></script>
-    <script src="../js/jquery.flot.resize.min.js"></script>
-
+    <script src="../js/jquery.flot.resize.min.js"></script>-->
+     
     <!-- ace scripts -->
     <script src="../js/ace-elements.min.js"></script>
     <script src="../js/ace.min.js"></script>
-   
+     
     <script src="../js/jquery-3.0.0.js"></script>
     <script src="../js/jquery-ui.min.js"></script>
     <script src="../js/bootbox.min.js"></script>
@@ -505,3 +408,28 @@
 
 </body>
 </html>
+<script>
+        
+        function validarCampoLleno(valor, nombreCampo) {
+            if (valor === "" || valor === "0" || valor === undefined || valor.length === 0) {
+                $('#mensajes').addClass('alert alert-danger');
+                $('#mensajes').removeClass('hide');
+                var tips = $("#textoMensaje");
+                tips.text("Error ! " + nombreCampo + " no puede estar vacío ");
+                return false;
+            } else {
+                return true;
+            }
+        }
+         function mensajePersonalizado(valor, nombreCampo) {
+            if (valor === "" || valor === "0" || valor === undefined || valor.length === 0) {
+                $('#mensajes').addClass('alert alert-danger');
+                $('#mensajes').removeClass('hide');
+                var tips = $("#textoMensaje");
+                tips.text("Error ! " + nombreCampo + " ");
+                return false;
+            } else {
+                return true;
+            }
+        }
+</script>

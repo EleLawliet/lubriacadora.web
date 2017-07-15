@@ -168,7 +168,7 @@ $(document).ready(function () {
          $("#tipo_servicio_id").val(pacienteDatos.tipo_servicio_id);
           console.log(pacienteDatos);
             
-            
+
      });  
         
         

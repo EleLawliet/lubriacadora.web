@@ -65,7 +65,17 @@ class ClienteVehiculo extends Model
 
      public static function buscarClienteVeiculoXId($cliente_id){
 
-        $lstClienteVehiculo = ClienteVehiculo::with('estado','vehiculo','cliente', 'vehiculo.claseVehiculo')->where('cliente_id','=',$cliente_id)->orderBy('cliente_vehiculo_id', 'desc')->get();
+        $lstClienteVehiculo = ClienteVehiculo::with('estado','vehiculo','cliente', 'vehiculo.claseVehiculo','vehiculo.estado')->where('cliente_id','=',$cliente_id)->orderBy('cliente_vehiculo_id', 'desc')->get();
+
+        return  $lstClienteVehiculo; 
+     }
+
+      public static function buscarExisteClienteVeiculoXId($cliente_vehiculo_id, $vehiculo_id){
+
+        $lstClienteVehiculo = ClienteVehiculo::with('estado','vehiculo','cliente', 'vehiculo.claseVehiculo','vehiculo.estado')
+        ->where('cliente_vehiculo_id','=',$cliente_vehiculo_id)
+        ->where('vehiculo_id','=',$vehiculo_id)
+        ->orderBy('cliente_vehiculo_id', 'desc')->get();
 
         return  $lstClienteVehiculo; 
      }
