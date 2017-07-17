@@ -126,11 +126,11 @@ class LubricadoraWsdlController extends Controller
        return Response::json($response, $statusCode);
     }
 
-    public function detServiciosXvehiculo($vehiculo_id){
+    public function detServiciosXvehiculo($cliente_vehiculo_id){
         	      try {
 
 			            //se recuperan los datos por comunidad
-			            $datos = DetServiciosCliente::buscarServiciosClienteXvehiculo($vehiculo_id);
+			            $datos = DetServiciosCliente::buscarServiciosClienteXvehiculo($cliente_vehiculo_id);
 			            
 			           
 			            //se arma e inicializa el codigo y el response de la firma

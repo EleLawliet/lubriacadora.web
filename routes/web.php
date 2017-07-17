@@ -25,7 +25,7 @@ Route::get('/comunidades/listado', 'LubricadoraWsdl\LubricadoraWsdlController@ge
 // con parametro
 Route::get('/datosCliente', 'LubricadoraWsdl\LubricadoraWsdlController@datosXCliente');
 Route::get('/vehicle-cliente/{cedula}', 'LubricadoraWsdl\LubricadoraWsdlController@datosVehicleXCliente');
-Route::get('/DetServicios-cliente/{vehiculo_id}', 'LubricadoraWsdl\LubricadoraWsdlController@detServiciosXvehiculo');
+Route::get('/DetServicios-cliente/{cliente_vehiculo_id}', 'LubricadoraWsdl\LubricadoraWsdlController@detServiciosXvehiculo');
 Route::get('/Tips', 'LubricadoraWsdl\LubricadoraWsdlController@datosTips');
 
 
