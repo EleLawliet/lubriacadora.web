@@ -318,7 +318,7 @@ $(document).ready(function () {
             function verPeriodo(data){
                          var tregistros = '<option value="">Seleccione..</option>';
                              for(var i in data){
-                                 tregistros =tregistros + '<option value='+data[i].vehiculo_id+'>'+ data[i].marca +' - '+data[i].placa+ ' </option>';
+                                 tregistros =tregistros + '<option value='+data[i].vehiculo_id+'>'+ data[i].marca +' Clase Vehiculo '+data[i].claseVehiculo.nombre+ ' </option>';
 
                           }
                             return tregistros;
