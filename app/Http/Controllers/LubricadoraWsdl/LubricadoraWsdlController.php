@@ -5,6 +5,7 @@ namespace App\Http\Controllers\LubricadoraWsdl;
 use Illuminate\Http\Request;
 use App\Entidades\Cliente;
 use App\Entidades\Tips;
+use App\Entidades\DetServiciosCliente;
 use Response;
 use Auth;
 use Illuminate\Routing\Controller;
@@ -75,7 +76,7 @@ class LubricadoraWsdlController extends Controller
 
             //se recuperan los datos por comunidad
             $datos = Cliente::buscarCedulaVehicles($cedula);
-
+            dd($datos);
             //se arma e inicializa el codigo y el response de la firma
             $statusCode = 200;
 
@@ -125,12 +126,13 @@ class LubricadoraWsdlController extends Controller
        return Response::json($response, $statusCode);
     }
 
-    public function detServiciosXvehiculo(){
+    public function detServiciosXvehiculo($vehiculo_id){
         	      try {
 
 			            //se recuperan los datos por comunidad
-			            $datos = Tips::buscarTips();
+			            $datos = DetServiciosCliente::buscarServiciosClienteXvehiculo($vehiculo_id);
 			            
+			           
 			            //se arma e inicializa el codigo y el response de la firma
 			            $statusCode = 200;
 

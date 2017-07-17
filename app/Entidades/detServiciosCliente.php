@@ -21,11 +21,11 @@ class DetServiciosCliente extends Model
      *
      * @var array
      */
-    protected $fillable = ['clase_vehiculo_servicio_id',
+    protected $fillable = [ 'clase_vehiculo_servicio_id',
         'cliente_vehiculo_id',
         'insumos_id',
         'estado_id',
-        'servicios_cliente_id'
+        'servicios_cliente_id',
         'kilometraje_inicio',
         'kilometraje_sustitucion',
         'fecha_inicio',
@@ -53,4 +53,40 @@ class DetServiciosCliente extends Model
     public function serviciosCliente() {
         return $this->belongsTo(ServiciosCliente::class, 'servicios_cliente_id');
     }
+
+
+    /**
+     cargar servicios que se han realizado al vehiculo
+     wilmer vera
+     fecha:17/07/2017
+   **/
+
+   public static function buscarServiciosClienteXvehiculo($cliente_vehiculo_id){
+
+        $lstDetServiciosCliente = DetServiciosCliente::with(['claseVehiculoServicio.tipoServicio','claseVehiculoServicio.claseVehiculo','insumos'])
+            ->where('cliente_vehiculo_id','=', $cliente_vehiculo_id)
+            ->where('estado_id','=', Estado::$estadoActivo)->get();
+
+        $arrayData=[];
+       
+           $i=0;
+          
+           foreach ($lstDetServiciosCliente as $claseVehiculo_vehicles){
+            if(count($claseVehiculo_vehicles->claseVehiculoServicio)>0){
+            $arrayData[$i]['detServiciosCliente']=(object)$claseVehiculo_vehicles->getAttributes();
+            //$arrayData[$i]['claseVehiculoServicio']=(object)$claseVehiculo_vehicles->claseVehiculoServicio->getAttributes();
+            //$arrayData[$i]['ClaseVehiculo']=(object)$claseVehiculo_vehicles->claseVehiculoServicio->claseVehiculo->getAttributes();
+            $arrayData[$i]['ClaseVehiculo']=(object)$claseVehiculo_vehicles->claseVehiculoServicio->claseVehiculo->getAttributes();
+            $arrayData[$i]['tipoServicio']=(object)$claseVehiculo_vehicles->claseVehiculoServicio->tipoServicio->getAttributes();
+
+                       $i++;
+            }
+
+           }
+        
+
+        return  $arrayData;
+
+    }
+
 }
