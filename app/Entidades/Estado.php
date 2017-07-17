@@ -29,14 +29,47 @@ class Estado extends Model
     
     
      public function tipoServicio(){
-        return $this->hasMany('App\Entidades\TipoServicio');
+        return $this->hasMany(TipoServicio::class , 'tipo_servicio_id');
+    } 
+
+    public function claseVehiculo(){
+        return $this->hasMany(ClaseVehiculo::class , 'clase_vehiculo_id');
     } 
 
     public function vehiculo(){
-        return $this->hasMany('App\Entidades\Vehiculo');
+        return $this->hasMany(Vehiculo::class , 'vehiculo_id');
     } 
 
     public function cliente(){
-        return $this->hasMany('App\Entidades\Cliente');
+        return $this->hasMany(Cliente::class , 'cliente_id');
     } 
+
+    public function ServiciosCliente(){
+        return $this->hasMany(ServiciosCliente::class, 'servicios_cliente_id'); 
+    }
+
+    public function detServiciosCliente(){
+        return $this->hasMany(DetServiciosCliente::class, 'det_servicios_cliente_id'); 
+    }
+
+    public function insumos(){
+        return $this->hasMany(Insumos::class, 'insumos_id'); 
+    }
+
+    public function tipoTiempo(){
+        return $this->hasMany(TipoTiempo::class, 'tipo_tiempo_id'); 
+    }
+
+    public function claseVehiculoServicio(){
+        return $this->hasMany(ClaseVehiculoServicio::class,'clase_vehiculo_servicio_id');
+    }
+
+    public function ClienteVehiculo(){
+      return $this->hasMany(ClienteVehiculo::class,'cliente_id');
+    }
+
+
+    
+
+    
 }

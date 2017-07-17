@@ -24,6 +24,11 @@ Route::get('/comunidades/listado', 'LubricadoraWsdl\LubricadoraWsdlController@ge
 
 // con parametro
 Route::get('/datosCliente', 'LubricadoraWsdl\LubricadoraWsdlController@datosXCliente');
+Route::get('/vehicle-cliente/{cedula}', 'LubricadoraWsdl\LubricadoraWsdlController@datosVehicleXCliente');
+Route::get('/DetServicios-cliente/{vehiculo_id}', 'LubricadoraWsdl\LubricadoraWsdlController@detServiciosXvehiculo');
+Route::get('/Tips', 'LubricadoraWsdl\LubricadoraWsdlController@datosTips');
+
+
 //   Fin   //
 
 
@@ -47,4 +52,9 @@ Route::post('/cargarPorCedula',  'Referencial\ClienteController@cargarPorCedula'
 Route::resource('/claseVehiculoServicio',  'Referencial\ClaseVehiculoServicioController');
 Route::post('/guardarClaseServicio',  'Referencial\ClaseVehiculoServicioController@guardarClaseServicio');
 Route::post('/validaClaseVehiculoXtipoServicio',  'Referencial\ClaseVehiculoServicioController@validaClaseVehiculoXtipoServicio');
+
+// --Inicio Pantalla de Clase vehicuo servicio
+
+Route::resource('/serviciosCliente',  'Transaccional\ServiciosClienteController');
+Route::post('/buscarserviciosPorClaseVehiculo',  'Transaccional\ServiciosClienteController@buscarserviciosPorClaseVehiculo');
 

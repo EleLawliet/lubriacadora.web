@@ -31,21 +31,24 @@ class ClaseVehiculoServicio extends Model
         'tiempo_servicio'];
 
     public function estado() {
-        return $this->belongsTo('App\Entidades\Estado' , 'estado_id');
+        return $this->belongsTo(Estado::class , 'estado_id');
     }
 
-     public function claseVehiculo() {
-        return $this->belongsTo('App\Entidades\ClaseVehiculo', 'clase_vehiculo_id');
+    public function claseVehiculo() {
+        return $this->belongsTo(ClaseVehiculo::class, 'clase_vehiculo_id');
     }
 
-     public function tipoServicio() {
-        return $this->belongsTo('App\Entidades\TipoServicio', 'tipo_servicio_id');
+    public function tipoServicio() {
+        return $this->belongsTo(TipoServicio::class, 'tipo_servicio_id');
     }
 
-     public function tipoTiempo() {
-        return $this->belongsTo('App\Entidades\TipoTiempo', 'tipo_tiempo_id');
+    public function tipoTiempo() {
+        return $this->belongsTo(TipoTiempo::class, 'tipo_tiempo_id');
     }
 
+    public function detServiciosCliente(){
+        return $this->hasMany(DetServiciosCliente::class, 'det_servicios_cliente_id'); 
+    }
 
      public static function buscarClaseVehiculoServicio(){
 
@@ -54,15 +57,22 @@ class ClaseVehiculoServicio extends Model
         return  $lstClienteVehiculo; 
      }
 
+      /**
+			fecha:16/07/2017
+      **/
+      public static function cargarPorClaseVehiculo($clase_vehiculo_id){
+      $lstClaseVehiculoServicio = ClaseVehiculoServicio::with('estado','claseVehiculo','tipoServicio', 'tipoTiempo')
+					      							  ->where('estado_id','=', Estado::$estadoActivo)
+					       							  ->where('clase_vehiculo_id','=', $clase_vehiculo_id)
+					       							  ->orderBy('clase_vehiculo_servicio_id', 'desc')->get();
+        return  $lstClaseVehiculoServicio; 
+     }
+
 
      public static function ValidaClaseVehiculoServicio($tipo_servicio_id, $clase_vehiculo_id,$clase_vehiculo_servicio_id){
 
      if($clase_vehiculo_servicio_id!=null){
-       /*$lstClienteVehiculo = ClaseVehiculoServicio::where('tipo_servicio_id',  $tipo_servicio_id)
-      											 ->where('clase_vehiculo_id', $clase_vehiculo_id)
-      											  ->whereNot('clase_vehiculo_servicio_id',$clase_vehiculo_servicio_id)->get();
-
-		*/
+    
       	 $lstClienteVehiculo = DB::table('Clase_Vehiculo_Servicio')
 			                    ->whereNotIn('clase_vehiculo_servicio_id', [$clase_vehiculo_servicio_id] )
 			                    ->where('tipo_servicio_id','=',  $tipo_servicio_id)

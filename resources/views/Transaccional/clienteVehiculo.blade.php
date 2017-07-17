@@ -7,10 +7,10 @@
 
   <div class="page-header">
               <h1>
-                Registro de cliente
+                Cliente Vehiculo
                 <small>
                   <i class="ace-icon fa fa-angle-double-right"></i>
-                  Referencial 
+                  Transaccional 
                 </small>
               </h1>
             </div><!-- /.page-header -->
@@ -53,72 +53,68 @@
                   <input name="tipo_servicio_id" type="hidden" id="tipo_servicio_id" class="width-100" />
 
          <div class="row"> 
-
-                <div class="col-sm-4"> 
+          <div class="col-sm-10">     
+               
               <div class="form-group ">
-                                <label for="" class="col-xs-12 col-sm-3 control-label no-padding-right">Nombre</label>
-
-                    <div class="col-xs-12 col-sm-8">
-                      <span class="block input-icon input-icon-right">
-                        <input name="nombre" type="text" id="nombre" class="width-100" />
-                        
-                        <input name="nombre" type="hidden" id="cliente_id" class="width-100" />
-                      </span>
-                    </div>
-                                <div class="help-block col-xs-12 col-sm-reset inline"> </div>
-              </div>
-
-              <div class="form-group ">
-                                <label for="" class="col-xs-12 col-sm-3 control-label no-padding-right">Apellido</label>
-
-                    <div class="col-xs-12 col-sm-8">
-                      <span class="block input-icon input-icon-right">
-                        <input name="apellido" type="text" id="apellido" class="width-100" />
-                       
-                      </span>
-                    </div>
-                                <div class="help-block col-xs-12 col-sm-reset inline"> </div>
-              </div>
-              <div class="form-group ">
-                                <label for="" class="col-xs-12 col-sm-3 control-label no-padding-right">Cedula</label>
+                                <label for="" class="col-xs-1 col-sm-2 control-label no-padding-right">Cedula</label>
                       
-                    <div class="col-xs-12 col-sm-8">
-                      <span class="block input-icon input-icon-right">
-                        <input name="cedula" type="number" id="cedula" class="width-100" />
-                        <a></a>
-                      </span>
-                    </div>
-                     <a class="btn_buscar"  href="#" data-toggle="modal"  data-placement="left" title= "Consulta Trabajador">
-                                <i class="fa fa-search icon-paciente"></i>
-                      </a>
-                                <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                        <div class="col-xs-5 col-sm-3">
+                          <span class="block input-icon input-icon-right">
+                            <input name="cedula" type="number" id="cedula" class="width-100" />
+                            <a></a>
+                          </span>
+                        </div>
+                       <div class="col-xs-2 col-sm-1">  
+                         <a class="btn_buscar"  href="#" data-toggle="modal"  data-placement="left" title= "Consulta Trabajador">
+                                    <i class="fa fa-search icon-paciente"></i>
+                          </a>
+                      </div>
+                      <div class="col-xs-5 col-sm-3"> 
+                          <input name="nombre" type="text" placeholder="Nombre" id="nombre" class="width-100" />
+                      </div>
+                      <div class="col-xs-5 col-sm-3">
+                        <input name="apellido" placeholder="Apellido" type="text" id="apellido" class="width-100" />
+                      </div>    
               </div>
-              <div class="form-group ">
-                                <label for="" class="col-xs-12 col-sm-3 control-label no-padding-right">teléfono</label>
 
-                    <div class="col-xs-12 col-sm-8">
-                      <span class="block input-icon input-icon-right">
-                        <input name="telefono" type="number" id="telefono" class="width-100" />
-                       
-                      </span>
-                    </div>
-                                <div class="help-block col-xs-12 col-sm-reset inline"> </div>
-              </div>
               <div class="form-group ">
-                                <label for="" class="col-xs-12 col-sm-3 control-label no-padding-right">Movil</label>
+                    <span class="block input-icon input-icon-right">
+                    <label  for=""  class="col-xs-5 col-sm-2 control-label no-padding-right">vehículos</label>
+                    <div class="col-xs-5 col-sm-3">
+                         <div id="cmb_periodo_id"></div>
+                    </div> 
+                  <div class="col-xs-5 col-sm-4"> 
+              <input name="nombre_clase_vehiculo" type="text" placeholder="Clase vehiculo" id="nombre_clase_vehiculo" class="width-100" />
+                  </div>       
+              </div>
 
-                    <div class="col-xs-12 col-sm-8">
+              <div class="form-group ">
+                     <label for="" class="col-xs-1 col-sm-2 control-label no-padding-right">Servicios</label>
+                    <div class="col-xs-1 col-sm-7">
                       <span class="block input-icon input-icon-right">
-                        <input name="movil" type="number" id="movil" class="width-100" />
-                       
+                        
+                        <div id="cmbServicio"></div>
                       </span>
                     </div>
                                 <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+
+                     <div class="col-xs-1 col-sm-3">            
+                      <select id="estado_id" name="estado_id" class="form-control" data-placeholder="Click to Choose...">
+
+                          <option value="">Insumos...</option>
+                           @foreach($lstInsumos as $item) 
+                                        <option  value="{{$item->estado_id}}">{{$item->nombre}}</option> 
+                           @endforeach
+                        </select>          
+
+                     </div>   
+
               </div>
+
                <div class="form-group ">
-                                <label for="" class="col-xs-12 col-sm-3 control-label no-padding-right">Correo</label>
+                                <label for="" class="col-xs-12 col-sm-2 control-label no-padding-right">Km Inicio</label>
 
-                    <div class="col-xs-12 col-sm-8">
+                    <div class="col-xs-12 col-sm-7">
                       <span class="block input-icon input-icon-right">
                         <input name="correo" type="text" id="correo" class="width-100" />
                        
@@ -126,144 +122,17 @@
                     </div>
                                 <div class="help-block col-xs-12 col-sm-reset inline"> </div>
               </div>
-               <div class="form-group ">
-                                <label for="" class="col-xs-12 col-sm-3 control-label no-padding-right">Dirección</label>
-
-                    <div class="col-xs-12 col-sm-8">
-                      <span class="block input-icon input-icon-right">
-                        <input name="direccion" type="text" id="direccion" class="width-100" />
-                       
-                      </span>
-                    </div>
-                                <div class="help-block col-xs-12 col-sm-reset inline"> </div>
-              </div>
-
+               
             </div>  
 
-              <div class="col-sm-7">     
-                    <div class="form-group ">
-                                <label for="" class="col-xs-12 col-sm-3 control-label no-padding-right">Marca</label>
-
-                    <div class="col-xs-12 col-sm-7">
-                      <span class="block input-icon input-icon-right">
-                        <input name="marca" type="text" id="marca" class="width-100" />
-                        <input name="select_id" type="hidden" id="select_id" class="width-100" />
-                       
-                      </span>
-                    </div>
-                                <div class="help-block col-xs-12 col-sm-reset inline"> </div>
-                    </div>
-                    <div class="form-group ">
-                                <label for="" class="col-xs-12 col-sm-3 control-label no-padding-right">Color</label>
-
-                    <div class="col-xs-12 col-sm-7">
-                      <span class="block input-icon input-icon-right">
-                        <input name="color" type="text" id="color" class="width-100" />
-                       
-                      </span>
-                    </div>
-                                <div class="help-block col-xs-12 col-sm-reset inline"> </div>
-                    </div>
-
-                     <div class="form-group ">
-                                <label for="" class="col-xs-12 col-sm-3 control-label no-padding-right">Placa</label>
-
-                    <div class="col-xs-12 col-sm-7">
-                      <span class="block input-icon input-icon-right">
-                        <input name="placa" type="text" id="placa" class="width-100" />
-                       
-                      </span>
-                    </div>
-                                <div class="help-block col-xs-12 col-sm-reset inline"> </div>
-                    </div>
-
-                     <div class="form-group ">
-                                <label for="" class="col-xs-12 col-sm-3 control-label no-padding-right">Uso Personal</label>
-
-                    <div class="col-xs-12 col-sm-7">
-                      <span class="block input-icon input-icon-right">
-                        
-                         <select id="uso_personal" name="uso_personal" class="form-control" data-placeholder="Click to Choose...">
-
-                          <option value="">&nbsp;</option>
-                          
-                                        <option  value="S">si</option> 
-                                        <option  value="N">no</option> 
-                           
-                        </select>
-                      
-                       
-                      </span>
-                    </div>
-                                <div class="help-block col-xs-12 col-sm-reset inline"> </div>
-                    </div>
-
-                     <div class="form-group ">
-                                <label for="" class="col-xs-12 col-sm-3 control-label no-padding-right">Anio</label>
-
-                    <div class="col-xs-12 col-sm-7">
-                      <span class="block input-icon input-icon-right">
-                        <input name="anio" type="number" id="anio" class="width-100" />
-                       
-                      </span>
-                    </div>
-                                <div class="help-block col-xs-12 col-sm-reset inline"> </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="state">Clase Vehiculo</label>
-
-                      <div class="col-md-5">
-                         <select id="clase_vehiculo" name="clase_vehiculo" class="form-control" data-placeholder="Click to Choose...">
-
-                          <option value="">&nbsp;</option>
-                           @foreach($lstClaseVehiculo as $item) 
-                                        <option  value="{{$item->clase_vehiculo_id}}">{{$item->nombre}}</option> 
-                           @endforeach
-                        </select>
-                      </div>
-
-                  
-
-                     <a id="btn_agregar" class="col-md-1" type="button" data-toggle="tooltip" data-placement="left" title="Agrega vehiculo">
-                                <i class="fa fa-plus-circle fa-2x"></i>
-                            </a>
-                    </div> 
-                    
-                     <div class="form-group">
-                      <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="state">Estado</label>
-
-                      <div class="col-md-5">
-                         <select id="estado_id" name="estado_id" class="form-control" data-placeholder="Click to Choose...">
-
-                          <option value="">&nbsp;</option>
-                           @foreach($lstEstado as $item) 
-                                        <option  value="{{$item->estado_id}}">{{$item->nombre}}</option> 
-                           @endforeach
-                        </select>
-                      </div>
-                    
-                    </div>
-
-
-
-                 <div class="form-group">  
-                   <div class="col-md-3">  
-                          <button id="btn_editar" class="btn btn-primary " type="button"  />  Guardar</button> 
-                    </div>
-                    <div class="col-md-3">  
-                          <button id="btn_limpiar" class="btn btn-primary " type="button"  />  Limpiar</button> 
-                    </div>
-                 </div>   
-                   
-            </div>
+             
 
             
 
       </div>       
                    
                     <div class="form-group "> 
-                        <div class="panel-heading">LISTADO DE VEHICULOS</div>
+                        <div class="panel-heading">LISTADO DE SERVICIOS</div>
                                <div id="tbl_vehiculo"></div> 
                                 
                           </div> 
@@ -276,7 +145,56 @@
 </div>
 
 <script type="text/javascript">
+   function consultarcedulas(){ 
+               
+               var vehiculo_id= $("#vehiculo_id").val();
+               console.log(vehiculo_id);
+                    $.ajax({
+                         url: '{{ url('/buscarserviciosPorClaseVehiculo') }}',
+                         type: 'post',
+                         data: {'vehiculo_id': vehiculo_id},
+                         beforeSend: function() {
+                            //$.blockUI({ message: '<h4><img src="../imagenes/gif/progress.gif" /></br> PROCESANDO... Espere un momento porfavor </h4>' });
+                          },
+                         error : function(jqXHR, textStatus, errorThrown) {
+                            var gnrMensaje =$("#gnrMensaje");
+                            if(jqXHR.status == '401'){
+                                gnrMensaje.text("Su sesión ha caducado, porfavor de click en Salir y vuelva a Ingresar."); 
+                                $('#gnrError').modal('show');
+                            }     
+                        },
+                         success: function(data) {
 
+                          /*for(var i in data){
+                                  
+                                 $("#nombre_clase_vehiculo")=data[i].clase_vehiculo.nombre; 
+
+                          }
+                          $("#nombre_clase_vehiculo")=data[i].clase_vehiculo.nombre; */
+
+                        // var cadena = JSON.stringify(data);
+                         var materias= verTipoArchivo(data);
+                                var message='<select id="cedula_ingreso_id" name="cedula_ingreso_id"  class="form-control">'+materias+
+                                            '</select>';
+                               $("#cmbServicio").empty();
+                               $("#cmbServicio").append(message);  
+                     },
+                     complete: function() {
+                       // setTimeout($.unblockUI, 1000);
+                    }
+                           
+                   });
+
+                    function verTipoArchivo(data){
+                         var tregistros = '<option value="">Seleccione..</option>';
+                             for(var i in data){
+                                 tregistros =tregistros + '<option value='+data[i].tipo_servicio_id+'>'+ data[i].tipo_servicio.nombre +' </option>';
+
+                          }
+                            return tregistros;
+                    }
+
+        } 
    
 </script>
 
@@ -347,6 +265,7 @@ $(document).ready(function () {
         var cedula= $("#cedula").val();
         menu=[];
         limpiar();
+        var message;
            $.ajax({
                     url: '{{ url('/cargarPorCedula') }}',
                     type: 'post',
@@ -371,39 +290,17 @@ $(document).ready(function () {
                               $("#nombre").val(objCliente.nombre);
                               $("#apellido").val(objCliente.apellido);
                               $("#cedula").val(objCliente.cedula);
-                              $("#telefono").val(objCliente.telefono);
-                              $("#movil").val(objCliente.movil);
-                              $("#correo").val(objCliente.correo);
-                              $("#direccion").val(objCliente.direccion);
-
-                              
-
-                            $("#cliente_id").val(objCliente.cliente_id);
-                             console.log(menu);
-                              tabla=dibujatabla2(menu);
                              
-                              $("#tbl_vehiculo").val(tabla);
-                              document.getElementById('tbl_vehiculo').innerHTML = tabla; 
+                               var vehiculos= verPeriodo(menu);
+                               message='<select id="vehiculo_id"   onclick="consultarcedulas();" name="vehiculo_id" class="form-control">'+vehiculos+'</select>';
 
-                               addAEvent(); 
+                               $("#cmb_periodo_id").empty();
+                               $("#cmb_periodo_id").append(message);
+                              
+                                     
+                               
+                               //consultaServicios();
 
-                               $('#automovil').DataTable({
-                                     'columnDefs': [{
-                                     'targets': 0,
-                                     'searchable': false,
-                                     'orderable': false,
-                                     'className': 'dt-body-center',
-                                     'search': 'applied',
-                                     'render': function (data, type, full, meta){
-                                      
-                                         return '<input class="vehiculo_id" type="checkbox" checked="true" name="idprov[]" value="' + $('<div/>').text(data).html() + '">';
-                                       } 
-                                    
-                                  }],
-                                      'order': [[1, 'asc']]
-
-
-                              });
 
                       }else{
                           
@@ -416,8 +313,23 @@ $(document).ready(function () {
                     }  
 
                 });   
+
+
+            function verPeriodo(data){
+                         var tregistros = '<option value="">Seleccione..</option>';
+                             for(var i in data){
+                                 tregistros =tregistros + '<option value='+data[i].vehiculo_id+'>'+ data[i].marca +' - '+data[i].placa+ ' </option>';
+
+                          }
+                            return tregistros;
+                    }  
             
      }); 
+
+     
+
+    
+           
 
 
       function dibujatabla2(menu){
@@ -626,11 +538,10 @@ $(document).ready(function () {
 
 function addAEvent(){
        $(".btn_editVehiculos").click(function (event) {
-        var fila = $(this).parents('tr');
+         var fila = $(this).parents('tr');
          var cadena = JSON.stringify(fila.data('id'));
-         var pacienteDatos = eval('(' + cadena + ')');
-         console.log(pacienteDatos);
-
+        var pacienteDatos = eval('(' + cadena + ')');
+      
          $("#select_id").val(pacienteDatos.vehiculo_id);
          $("#marca").val(pacienteDatos.marca);
          $("#color").val(pacienteDatos.color);
@@ -737,88 +648,11 @@ function addAEvent(){
                                 }  
 
                             }); 
-
-
                   
 
         }
 
      });
-      
-/*
-
-     $("#btn_guardar").click(function (event) {
-      var nombre=$("#nombre").val();
-      var apellido=$("#apellido").val();
-      var cedula=$("#cedula").val();
-      var telefono=$("#telefono").val();
-      var movil=$("#movil").val();
-      var correo=$("#correo").val();
-      var direccion=$("#direccion").val();
-      
-      var objTable = $("#automovil").DataTable();
-      var objVehiculo = new Object();
-      var objCiente= new Object();
-      objCiente["nombre"]=nombre;
-      objCiente["apellido"]=apellido;
-      objCiente["cedula"]=cedula;
-      objCiente["telefono"]=telefono;
-      objCiente["movil"]=movil;
-      objCiente["correo"]=correo;
-      objCiente["direccion"]=direccion;
-      var lstClienteVehiculo=[];
-
-
-      $(':checkbox', objTable.rows().nodes()).each(function(){             
-//if($(this).is('input[name="idprov[]"]:checked')){
-                    var    usoPersonal =  $(this).parent().parent().find(".uso_personal").val();
-                    var    anio =  $(this).parent().parent().find(".anio").val();
-                    var    placa =  $(this).parent().parent().find(".placa").val();
-                    var    marca =  $(this).parent().parent().find(".marca").val();
-                    var    color =  $(this).parent().parent().find(".color").val();
-                    var    clase_vehiculo_id =  $(this).parent().parent().find(".clase_vehiculo_id").val();
-
-
-                    var objVehiculo = new Object();
-                    objVehiculo["marca"] = marca;
-                    objVehiculo["color"] = color;
-                    objVehiculo["placa"] = placa;
-                    objVehiculo["uso_personal"] = usoPersonal;
-                    objVehiculo["anio"] = anio;
-                    objVehiculo["clase_vehiculo_id"] = clase_vehiculo_id;
-
-        lstClienteVehiculo.push(objVehiculo);
-        
-      });
-
-        
-        console.log(objCiente);
-         $.ajax({
-                    url: '{{ url('/ingresoClienteVehiculo') }}',
-                    type: 'post',
-                    data: {'lstVehiculos':lstClienteVehiculo, 'cliente': objCiente},
-                     beforeSend: function(data){
-                          },
-                     success: function(data) {  
-                        console.log(data);
-                        //window.location.reload(true); 
-                    },
-                    error: function (xhr, status) {
-                        alert('Disculpe, existió un problema');
-                    }  
-
-                });   
-          
-
-
-      $(':checkbox', objTable.rows().nodes()).each(function(){             
-                    if($(this).is('input[name="idprov[]"]:checked')){
-                      
-                   }         
-      });
-
-     });*/
-
 
   });   
  </script>  

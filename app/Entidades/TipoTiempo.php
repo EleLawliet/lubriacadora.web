@@ -19,7 +19,11 @@ class TipoTiempo extends Model
     public    $timestamps = false;
 
     public function estado() {
-        return $this->belongsTo('App\Entidades\Estado', 'estado_id');
+        return $this->belongsTo(Estado::class, 'estado_id');
+    }
+
+    public function claseVehiculoServicio(){
+        return $this->hasMany(ClaseVehiculoServicio::class,'clase_vehiculo_servicio_id');
     }
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Entidades;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,7 +14,7 @@ class Insumos extends Model
      *
      * @var string
      */
-    protected $table = 'Insumos';
+    protected $table = 'insumos';
 
     /**
      * The attributes that are mass assignable.
@@ -26,22 +26,18 @@ class Insumos extends Model
         'fecha_ingreso',
         'usuario_ingreso',
         'fecha_modificacion',
-        'usuario_modificacion'];
+        'usuario_modificacion',
+        'estado_id'];
 
-    public function estado() {
-        return $this->belongsTo('App\Entidades\Estado');
+
+   public function estado() {
+        return $this->belongsTo(Estado::class, 'estado_id');
+    }
+    
+    public function detServiciosCliente(){
+        return $this->hasMany(DetServiciosCliente::class, 'det_servicios_cliente_id'); 
     }
 
-    public function claseVehiculoServicio() {
-        return $this->belongsTo('App\Entidades\ClaseVehiculoServicio');
-    }
 
-    public function clienteVehiculo() {
-        return $this->belongsTo('App\Entidades\ClienteVehiculo');
-    }
-
-    public function insumos() {
-        return $this->belongsTo('App\Entidades\Insumos');
-    }
 
 }

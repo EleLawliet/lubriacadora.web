@@ -267,9 +267,9 @@
 
                         <ul class="submenu">
                             <li class="">
-                                <a href="profile.html">
+                                <a href="serviciosCliente">
                                     <i class="menu-icon fa fa-caret-right"></i>
-                                    User Profile
+                                    Servicios Cliente
                                 </a>
 
                                 <b class="arrow"></b>

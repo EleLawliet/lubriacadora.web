@@ -29,12 +29,17 @@ class ServiciosCliente extends Model
         'usuario_ingreso'];
 
     public function estado() {
-        return $this->belongsTo('App\Entidades\Estado');
+        return $this->belongsTo(Estado::class, 'estado_id');
     }
 
     public function cliente() {
-        return $this->belongsTo('App\Entidades\Cliente');
+        return $this->belongsTo(Cliente::class, 'cliente_id');
     }
 
-   
+    public function detServiciosCliente(){
+        return $this->hasMany(DetServiciosCliente::class, 'det_servicios_cliente_id');
+    }
+
+    
+
 }

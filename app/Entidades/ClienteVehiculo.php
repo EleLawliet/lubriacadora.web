@@ -33,22 +33,21 @@ class ClienteVehiculo extends Model
      public    $timestamps = false;
 
     public function estado() {
-
-        return $this->belongsTo('App\Entidades\Estado', 'estado_id');
-
+        return $this->belongsTo(Estado::class, 'estado_id');
     }
 
     public function cliente() {
-
-        return $this->belongsTo('App\Entidades\Cliente', 'cliente_id');
-
+        return $this->belongsTo(Cliente::class, 'cliente_id');
     }
 
     public function vehiculo() {
-
-        return $this->belongsTo('App\Entidades\Vehiculo', 'vehiculo_id');
-
+        return $this->belongsTo(Vehiculo::class, 'vehiculo_id');
     }
+
+    public function detServiciosCliente(){
+        return $this->hasMany(DetServiciosCliente::class, 'det_servicios_cliente_id'); 
+    }
+
 
     public static function buscarClienteVeiculo($cliente_id){
 
@@ -63,14 +62,14 @@ class ClienteVehiculo extends Model
      *  9/junio/2017
      **/
 
-     public static function buscarClienteVeiculoXId($cliente_id){
+     public static function buscarClienteVehiculoXId($cliente_id){
 
         $lstClienteVehiculo = ClienteVehiculo::with('estado','vehiculo','cliente', 'vehiculo.claseVehiculo','vehiculo.estado')->where('cliente_id','=',$cliente_id)->orderBy('cliente_vehiculo_id', 'desc')->get();
 
         return  $lstClienteVehiculo; 
      }
 
-      public static function buscarExisteClienteVeiculoXId($cliente_vehiculo_id, $vehiculo_id){
+      public static function buscarExisteClienteVehiculoXId($cliente_vehiculo_id, $vehiculo_id){
 
         $lstClienteVehiculo = ClienteVehiculo::with('estado','vehiculo','cliente', 'vehiculo.claseVehiculo','vehiculo.estado')
         ->where('cliente_vehiculo_id','=',$cliente_vehiculo_id)

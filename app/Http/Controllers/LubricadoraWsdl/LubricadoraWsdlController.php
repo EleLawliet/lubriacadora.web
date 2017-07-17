@@ -4,7 +4,7 @@ namespace App\Http\Controllers\LubricadoraWsdl;
 
 use Illuminate\Http\Request;
 use App\Entidades\Cliente;
-
+use App\Entidades\Tips;
 use Response;
 use Auth;
 use Illuminate\Routing\Controller;
@@ -68,4 +68,91 @@ class LubricadoraWsdlController extends Controller
     		}	
     		return Response::json($response, $statusCode);
     }
+
+
+    public function datosVehicleXCliente($cedula){
+        	      try {
+
+            //se recuperan los datos por comunidad
+            $datos = Cliente::buscarCedulaVehicles($cedula);
+
+            //se arma e inicializa el codigo y el response de la firma
+            $statusCode = 200;
+
+            $response = [
+                'codigo'  => '000',
+                'mensaje' => 'Consulta de datos exitosa!',
+                'datos' => $datos
+            ];
+        } catch (\RuntimeException $e) {
+            //ocurre un error recuperando los datos por comunidad
+            $statusCode = 200;
+            $response = [
+                'codigo'  => '001',
+                'mensaje' => 'Error en los datos de entrada!'
+            ];
+            \Log::error("ERROR: ".$e->getMessage());
+        }
+        return Response::json($response, $statusCode);
+    }
+
+    /**
+	 Metodo para obtener los tips de promociones y publicidad de android
+    **/
+     public function datosTips(){
+        	      try {
+
+            //se recuperan los datos por comunidad
+            $datos = Tips::buscarTips();
+            
+            //se arma e inicializa el codigo y el response de la firma
+            $statusCode = 200;
+
+            $response = [
+                'codigo'  => '000',
+                'mensaje' => 'Consulta de datos exitosa!',
+                'datos' => $datos
+            ];
+        } catch (\RuntimeException $e) {
+            //ocurre un error recuperando los datos por comunidad
+            $statusCode = 200;
+            $response = [
+                'codigo'  => '001',
+                'mensaje' => 'Error en los datos de entrada!'
+            ];
+            \Log::error("ERROR: ".$e->getMessage());
+        }
+       return Response::json($response, $statusCode);
+    }
+
+    public function detServiciosXvehiculo(){
+        	      try {
+
+			            //se recuperan los datos por comunidad
+			            $datos = Tips::buscarTips();
+			            
+			            //se arma e inicializa el codigo y el response de la firma
+			            $statusCode = 200;
+
+			            $response = [
+			                'codigo'  => '000',
+			                'mensaje' => 'Consulta de datos exitosa!',
+			                'datos' => $datos
+			            ];
+			        } catch (\RuntimeException $e) {
+			            //ocurre un error recuperando los datos por comunidad
+			            $statusCode = 200;
+			            $response = [
+			                'codigo'  => '001',
+			                'mensaje' => 'Error en los datos de entrada!'
+			            ];
+			            \Log::error("ERROR: ".$e->getMessage());
+			        }
+			       return Response::json($response, $statusCode);
+    }
+
+
+    
+
+
 }

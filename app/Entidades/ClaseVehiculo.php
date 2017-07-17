@@ -22,23 +22,38 @@ class ClaseVehiculo extends Model
      * @var array
      */
 
-    protected $fillable = ['nombre',
+    protected $fillable = ['estado_id','nombre',
         'descripcion',
         'fecha_ingreso',
         'fecha_modificacion',
         'usuario_ingreso',
         'usuario_modificacion'];
 
-     public    $timestamps = false;
+    public    $timestamps = false;
 
     public function estado() {
-        return $this->belongsTo('App\Entidades\Estado');
+        return $this->belongsTo(Estado::class , 'estado_id');
     }
+
+    public function vehiculo(){
+        return $this->hasMany(Vehiculo::class,'vehiculo_id');
+    }
+
+     public function claseVehiculoServicio(){
+        return $this->hasMany(ClaseVehiculoServicio::class,'clase_vehiculo_servicio_id');
+    }
+
+    
+
 
      public static function cargarClaseVehiculo(){
        $lstClaseVehiculo = ClaseVehiculo::with('estado')->get();
         return $lstClaseVehiculo;  
 
      }
+
+     
+
+     
 
 }

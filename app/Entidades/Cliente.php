@@ -35,20 +35,53 @@ class Cliente extends Model
         return $this->belongsTo('App\Entidades\Estado');
     }
 
-   public static function buscarCedula($cedula){
+    public function ClienteVehiculo(){
+      return $this->hasMany(ClienteVehiculo::class,'cliente_id');
+    }
 
+    public function ServiciosCliente(){
+        return $this->hasMany(ServiciosCliente::class, 'servicios_cliente_id');              
+    }
+
+    public static function buscarCedula($cedula){
         $lstCliente = Cliente::with('estado')->where('cedula','=',$cedula)
                                    ->orderBy('cliente_id', 'desc')->first();
-
         return  $lstCliente; 
+    }
 
-   }
-    /**
-    * Jose Luis Rendon Ortiz
-    * Metodo para cargar cliente x cedula
-    * 9/julio/2017
-    */
 
+
+   
+
+   /**
+     cargar vehiculos  del cliente al  wsdl
+     wilmer vera
+     fecha:17/07/2017
+   **/
+
+   public static function buscarCedulaVehicles($cedula){
+
+        $lstCliente = Cliente::with(['estado','ClienteVehiculo.vehiculo.claseVehiculo'])->where('cedula','=',$cedula)
+            ->orderBy('cliente_id', 'desc')->get();
+
+        $arrayData=[];
+        foreach ($lstCliente as $cliente){
+           $tmpVehicle=$cliente->ClienteVehiculo;
+           $i=0;
+           foreach ($tmpVehicle as $client_vehicles){
+               if(count($client_vehicles->vehiculo)>0){
+                   $arrayData[$i]['vehiculo']=(object)$client_vehicles->vehiculo->getAttributes();
+                   $arrayData[$i]['claseVehiculo']=(object)$client_vehicles->vehiculo->claseVehiculo->getAttributes();
+
+                   $i++;
+               }
+
+           }
+        }
+
+        return  $arrayData;
+
+    }
 
   
 }

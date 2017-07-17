@@ -32,9 +32,7 @@ class TipoServicio extends Model
      public    $timestamps = false;
 
     public function estado() {
-
-        return $this->belongsTo('App\Entidades\Estado', 'estado_id');
-
+        return $this->belongsTo(Estado::class, 'estado_id');
     }
 
     public static function cargarTipoServicios(){

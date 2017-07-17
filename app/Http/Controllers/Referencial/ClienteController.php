@@ -139,7 +139,7 @@ class ClienteController extends Controller
                 $lstVehiculo=$request->lstVehiculos;
 
                 
-                 $objClienteVehiculo= ClienteVehiculo::buscarClienteVeiculoXId($objCliente->cliente_id);
+                 $objClienteVehiculo= ClienteVehiculo::buscarClienteVehiculoXId($objCliente->cliente_id);
 
                  foreach ($objClienteVehiculo as $key ) {
 
@@ -215,7 +215,7 @@ class ClienteController extends Controller
 
         if($objCliente!=null || $objCliente!=""){
 
-                $objClienteVehiculo= ClienteVehiculo::buscarClienteVeiculoXId($objCliente->cliente_id);
+                $objClienteVehiculo= ClienteVehiculo::buscarClienteVehiculoXId($objCliente->cliente_id);
                 return $objClienteVehiculo;
 
         }else{
