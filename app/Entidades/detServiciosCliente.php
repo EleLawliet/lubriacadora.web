@@ -63,7 +63,7 @@ class DetServiciosCliente extends Model
 
    public static function buscarServiciosClienteXvehiculo($cliente_vehiculo_id){
 
-        $lstDetServiciosCliente = DetServiciosCliente::with(['claseVehiculoServicio.tipoServicio','claseVehiculoServicio.claseVehiculo','insumos'])
+        $lstDetServiciosCliente = DetServiciosCliente::with(['claseVehiculoServicio.tipoServicio','claseVehiculoServicio.claseVehiculo','claseVehiculoServicio.TipoTiempo','insumos'])
             ->where('cliente_vehiculo_id','=', $cliente_vehiculo_id)
             ->where('estado_id','=', Estado::$estadoActivo)->get();
 
@@ -78,6 +78,9 @@ class DetServiciosCliente extends Model
             //$arrayData[$i]['ClaseVehiculo']=(object)$claseVehiculo_vehicles->claseVehiculoServicio->claseVehiculo->getAttributes();
             $arrayData[$i]['ClaseVehiculo']=(object)$claseVehiculo_vehicles->claseVehiculoServicio->claseVehiculo->getAttributes();
             $arrayData[$i]['tipoServicio']=(object)$claseVehiculo_vehicles->claseVehiculoServicio->tipoServicio->getAttributes();
+            $arrayData[$i]['claseVehiculoServicio']=(object)$claseVehiculo_vehicles->claseVehiculoServicio->getAttributes();
+            $arrayData[$i]['TipoTiempo']=(object)$claseVehiculo_vehicles->claseVehiculoServicio->tipoTiempo->getAttributes();
+            
 
                        $i++;
             }
