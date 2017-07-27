@@ -29,6 +29,11 @@ class ClaseVehiculo extends Model
         'usuario_ingreso',
         'usuario_modificacion'];
 
+
+    public static $taxi=1;
+    public static $tricimoto=2;
+    public static $vehiculosLivianosYpesados=3;
+
     public    $timestamps = false;
 
     public function estado() {
@@ -36,11 +41,11 @@ class ClaseVehiculo extends Model
     }
 
     public function vehiculo(){
-        return $this->hasMany(Vehiculo::class,'vehiculo_id');
+        return $this->hasMany(Vehiculo::class,'clase_vehiculo_id');
     }
 
      public function claseVehiculoServicio(){
-        return $this->hasMany(ClaseVehiculoServicio::class,'clase_vehiculo_servicio_id');
+        return $this->hasMany(ClaseVehiculoServicio::class,'clase_vehiculo_id');
     }
 
     

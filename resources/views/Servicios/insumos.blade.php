@@ -7,7 +7,7 @@
 
   <div class="page-header">
               <h1>
-                Tipo Servicios
+                Insumos
                 <small>
                   <i class="ace-icon fa fa-angle-double-right"></i>
                   mantenimiento 
@@ -17,12 +17,12 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Ingreso Tipo Servicio</div>
+                <div class="panel-heading">Ingreso de Insumos</div>
 
                 <div class="panel-body">
 
                
-                <form class="form-horizontal" id="sample-form" method="POST" enctype="multipart/form-data"  action="{{url('/guardarTipoServicio')}}" role="form">
+                <form class="form-horizontal" id="sample-form" method="POST" enctype="multipart/form-data"  action="{{url('/guardarInsumos')}}" role="form">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                          @if(Session::has('message'))
                                 <div class="alert alert-success" >
@@ -82,21 +82,22 @@
                                 <div class="col-md-4"></div>
                                 <div class="col-md-4">
                                 <br><button class ="btn btn-primary" type="submit"  > GUARDAR </button> 
-                                <button class ="btn btn-primary" id="btn_limpiar" type="button"  > LIMPIAR </button> 
+                                    <button class ="btn btn-primary" id="btn_limpiar" type="button"  > LIMPIAR </button> 
+                                
                                 </div>
                                 
                           </div> 
                   </form>
-                   <table id="tblMateria" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                   <table id="tblInsumos" class="table table-striped table-bordered" cellspacing="0" width="100%">
                           <thead>
                             <tr>  
-                                 <th>&nbsp;&nbsp;Materia</th>
+                                 <th>&nbsp;&nbsp;Insumos</th>
                                   <th>&nbsp;&nbsp;Estado</th>
                                  <th>Acción</th>
                              </tr>
                           </thead>  
                           <tbody>    
-                            @foreach($lstTipoServicio as $selec )
+                            @foreach($lsInsumos as $selec )
                                 <tr data-id="{{$selec}}">
 
                                    <td>&nbsp;&nbsp;{{$selec->nombre}} </td>
@@ -125,7 +126,7 @@ $(document).ready(function () {
             }
         });
 
-        $('#tblMateria').DataTable({
+        $('#tblInsumos').DataTable({
                 responsive: true
         });
     
@@ -139,20 +140,20 @@ $(document).ready(function () {
 
          $("#nombre").val(pacienteDatos.nombre);
          $("#estado").val(pacienteDatos.estado.estado_id);
-         $("#tipo_servicio_id").val(pacienteDatos.tipo_servicio_id);
+         $("#tipo_servicio_id").val(pacienteDatos.insumos_id);
           console.log(pacienteDatos);
             
 
      });  
         
-      $("#btn_limpiar").click(function (event) {
+       $("#btn_limpiar").click(function (event) {
   
          $("#nombre").val("");
          $("#estado").val("");
          $("#tipo_servicio_id").val("");
 
 
-     });      
+     });   
        
      
      

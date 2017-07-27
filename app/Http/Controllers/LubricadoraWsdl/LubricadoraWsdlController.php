@@ -25,11 +25,8 @@ class LubricadoraWsdlController extends Controller
 		
 
 		try {
-			//grid de las comuidades ya renderizado para mostrar en patalla
-			
-			$objCliente =  Cliente::all();
-			
-		
+			//grid de las comuidades ya renderizado para mostrar en patalla			
+			$objCliente =  Cliente::all();					
 		} catch (\Exception $e) {
 			\Log::error("ERROR: ".$e->getMessage());
 			$request->session()->flash('msj-error', "ERROR en metodo getListado");

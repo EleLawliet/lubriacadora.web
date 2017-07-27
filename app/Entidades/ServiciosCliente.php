@@ -37,9 +37,21 @@ class ServiciosCliente extends Model
     }
 
     public function detServiciosCliente(){
-        return $this->hasMany(DetServiciosCliente::class, 'det_servicios_cliente_id');
+        return $this->hasMany(DetServiciosCliente::class, 'servicios_cliente_id');
     }
+    
 
+    public static function  buscarPorservicioCliente($servicios_cliente_id){
+
+$lstServiciosCliente=DetServiciosCliente::with('serviciosCliente.cliente', 'clienteVehiculo.vehiculo.claseVehiculo','claseVehiculoServicio.tipoServicio','insumos')
+                                                ->where('servicios_cliente_id','=',$servicios_cliente_id) 
+                                                ->where('estado_id','=', Estado::$estadoActivo)
+                                                ->get();
+       
+        return  $lstServiciosCliente;                                          
+
+
+    }
     
 
 }

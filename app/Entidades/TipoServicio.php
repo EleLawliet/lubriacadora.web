@@ -22,6 +22,14 @@ class TipoServicio extends Model
      * @var array
      */
 
+
+    public static $aceiteSintetico = 1;
+    public static $aceiteSemiSintetico = 4;
+    public static $convencional = 9;
+
+
+    
+
     protected $fillable = ['nombre',
         'fecha_ingreso',
         'usuario_ingreso',
@@ -33,6 +41,10 @@ class TipoServicio extends Model
 
     public function estado() {
         return $this->belongsTo(Estado::class, 'estado_id');
+    }
+
+     public function claseVehiculoServicio(){
+        return $this->hasMany(claseVehiculoServicio::class, 'tipo_servicio_id'); 
     }
 
     public static function cargarTipoServicios(){
@@ -50,5 +62,8 @@ class TipoServicio extends Model
         return $lstTipoServicio;  
 
      }
+
+    
+
 
 }

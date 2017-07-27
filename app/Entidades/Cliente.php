@@ -35,12 +35,12 @@ class Cliente extends Model
         return $this->belongsTo('App\Entidades\Estado');
     }
 
-    public function ClienteVehiculo(){
+    public function clienteVehiculo(){
       return $this->hasMany(ClienteVehiculo::class,'cliente_id');
     }
 
-    public function ServiciosCliente(){
-        return $this->hasMany(ServiciosCliente::class, 'servicios_cliente_id');              
+    public function serviciosCliente(){
+        return $this->hasMany(ServiciosCliente::class, 'cliente_id');              
     }
 
     public static function buscarCedula($cedula){
@@ -61,7 +61,7 @@ class Cliente extends Model
 
    public static function buscarCedulaVehicles($cedula){
 
-        $lstCliente = Cliente::with(['estado','ClienteVehiculo.vehiculo.claseVehiculo'])->where('cedula','=',$cedula)
+        $lstCliente = Cliente::with(['estado','clienteVehiculo.vehiculo.claseVehiculo'])->where('cedula','=',$cedula)
             ->orderBy('cliente_id', 'desc')->get();
 
         $arrayData=[];
@@ -70,6 +70,7 @@ class Cliente extends Model
            $i=0;
            foreach ($tmpVehicle as $client_vehicles){
                if(count($client_vehicles->vehiculo)>0){
+                   $arrayData[$i]['cliente_vehiculo']=(object)$client_vehicles->getAttributes();
                    $arrayData[$i]['vehiculo']=(object)$client_vehicles->vehiculo->getAttributes();
                    $arrayData[$i]['claseVehiculo']=(object)$client_vehicles->vehiculo->claseVehiculo->getAttributes();
 
@@ -79,7 +80,7 @@ class Cliente extends Model
            }
         }
 
-        return  $arrayData;
+       return  $arrayData;
 
     }
 

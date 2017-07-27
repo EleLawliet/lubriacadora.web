@@ -9,6 +9,7 @@ use Auth;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
+use Validator;
 
 use App\Entidades\Vehiculo;
 class TipoServicioController extends Controller
@@ -24,27 +25,64 @@ class TipoServicioController extends Controller
 
 
     public function  guardarTipoServicio(Request $request){
+
     	$var_tipos_servicio_id=$request->tipo_servicio_id;
+
     	if($var_tipos_servicio_id){
 
-			     $objTipoServicio=TipoServicio::find($request->tipo_servicio_id);
+    						$messages = [
+						                'tipo_servicio.required' => 'Campo :attribute es requerido.',
+						                'tipo_servicio.max' => 'Campo :attribute debe tener un tamaño de :max.',
+						                'tipo_servicio.unique' => 'Campo :attribute ya se encuentra registrado.',	
+							            ];
 
-			     $objTipoServicio->nombre=$request->tipoServicio;
-			     $objTipoServicio->estado_id=$request->estado;
-			     $objTipoServicio->fecha_modificacion=Carbon::now();
-			     $objTipoServicio->usuario_modificacion=Auth::user()->id;
-			     $objTipoServicio->save();
-    		     
+							            $validator = Validator::make($request->all(),[
+							            'nombre' =>'required|max:255|unique:tipo_servicio,nombre,' . $request->tipo_servicio_id . ',tipo_servicio_id'              
+							            ], $messages);
+
+								            if ($validator->fails()) {
+								                return redirect('tipoServicio')
+								                                ->withErrors($validator)
+								                                ->withInput();
+								            }else{  
+
+
+												     $objTipoServicio=TipoServicio::find($request->tipo_servicio_id);
+
+												     $objTipoServicio->nombre=$request->nombre;
+												     $objTipoServicio->estado_id=$request->estado;
+												     $objTipoServicio->fecha_modificacion=Carbon::now();
+												     $objTipoServicio->usuario_modificacion=Auth::user()->id;
+												     $objTipoServicio->save();
+    		     							}
 		       
 		 }else{
 
-		 		$objTipoServicio= new TipoServicio();
-		    	$objTipoServicio->nombre=$request->tipoServicio;
-		    	$date = Carbon::now();
-		    	$objTipoServicio->fecha_ingreso=$date;
-		    	$objTipoServicio->usuario_ingreso=Auth::user()->id;
-		    	$objTipoServicio->estado_id=$request->estado; 
-		    	$objTipoServicio->save();
+
+		 					 $messages = [
+								                'tipo_servicio.required' => 'Campo :attribute es requerido.',
+								                'tipo_servicio.max' => 'Campo :attribute debe tener un tamaño de :max.',
+								                'tipo_servicio.unique' => 'Campo :attribute ya se encuentra registrado.',
+								            ];
+								            $validator = Validator::make($request->all(),[
+								                
+								                'nombre' => 'required|max:254|unique:tipo_servicio'
+								                
+								            ], $messages);
+
+								            if ($validator->fails()) {
+								                return redirect('tipoServicio')
+								                                ->withErrors($validator)
+								                                ->withInput();
+								            }else{
+											 		$objTipoServicio= new TipoServicio();
+											    	$objTipoServicio->nombre=$request->nombre;
+											    	$date = Carbon::now();
+											    	$objTipoServicio->fecha_ingreso=$date;
+											    	$objTipoServicio->usuario_ingreso=Auth::user()->id;
+											    	$objTipoServicio->estado_id=$request->estado; 
+											    	$objTipoServicio->save();
+											}   	
 		    	
 
 		 } 

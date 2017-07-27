@@ -47,7 +47,7 @@ class ClaseVehiculoServicio extends Model
     }
 
     public function detServiciosCliente(){
-        return $this->hasMany(DetServiciosCliente::class, 'det_servicios_cliente_id'); 
+        return $this->hasMany(DetServiciosCliente::class, 'clase_vehiculo_servicio_id'); 
     }
 
      public static function buscarClaseVehiculoServicio(){
@@ -72,7 +72,7 @@ class ClaseVehiculoServicio extends Model
      public static function ValidaClaseVehiculoServicio($tipo_servicio_id, $clase_vehiculo_id,$clase_vehiculo_servicio_id){
 
      if($clase_vehiculo_servicio_id!=null){
-    
+
       	 $lstClienteVehiculo = DB::table('Clase_Vehiculo_Servicio')
 			                    ->whereNotIn('clase_vehiculo_servicio_id', [$clase_vehiculo_servicio_id] )
 			                    ->where('tipo_servicio_id','=',  $tipo_servicio_id)
@@ -87,5 +87,19 @@ class ClaseVehiculoServicio extends Model
 
         return  $lstClienteVehiculo; 
      }
+
+      
+     public static function buscartipoServicioXusados($tipoTiempoId, $claseVehiculoId){
+
+        $objClaseVehiculoServicio = ClaseVehiculoServicio::where('tipo_tiempo_id', '=', $tipoTiempoId)
+                                                ->where('clase_vehiculo_id', '=', $claseVehiculoId)
+                                                ->where('estado_id','=', Estado::$estadoActivo)
+                                                ->get();
+      
+        return  $objClaseVehiculoServicio;
+
+    } 
+
+    
 
 }

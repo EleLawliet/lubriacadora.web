@@ -57,4 +57,14 @@ Route::post('/validaClaseVehiculoXtipoServicio',  'Referencial\ClaseVehiculoServ
 
 Route::resource('/serviciosCliente',  'Transaccional\ServiciosClienteController');
 Route::post('/buscarserviciosPorClaseVehiculo',  'Transaccional\ServiciosClienteController@buscarserviciosPorClaseVehiculo');
+Route::post('/calculaServicos',  'Transaccional\ServiciosClienteController@calculaServicos');
+Route::post('/ingresoServiciosCliente',  'Transaccional\ServiciosClienteController@ingresoServiciosCliente');
+Route::post('/cargarPorSolicitudClienetVehiculo',     'Transaccional\ServiciosClienteController@cargarPorSolicitudClienetVehiculo');
+
+// Insumos
+
+Route::resource('/insumos',  'Servicios\InsumosController');
+Route::post('/guardarInsumos',  'Servicios\InsumosController@guardarInsumos');
+Route::post('/cambioEstadoInsumo',     'Servicios\InsumosController@cambioEstadoInsumo');
+Route::post('/validaNombreInsumos',     'Servicios\InsumosController@validaNombreInsumos');
 

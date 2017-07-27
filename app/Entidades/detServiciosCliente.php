@@ -21,7 +21,7 @@ class DetServiciosCliente extends Model
      *
      * @var array
      */
-    protected $fillable = [ 'clase_vehiculo_servicio_id',
+    protected $fillable = ['clase_vehiculo_servicio_id',
         'cliente_vehiculo_id',
         'insumos_id',
         'estado_id',
@@ -88,5 +88,36 @@ class DetServiciosCliente extends Model
         return  $arrayData;
 
     }
+
+    public static function buscarServiciosClienteXclaseServicio($cliente_vehiculo_id, $clase_vehiculo_servicio_id,$num){
+
+        
+        $objDetServiciosCliente=DetServiciosCliente::where('cliente_vehiculo_id','=',$cliente_vehiculo_id) 
+                                                   ->where('clase_vehiculo_servicio_id','=',$clase_vehiculo_servicio_id)
+                                                   ->where('estado_id','=', Estado::$estadoActivo)
+                                                   ->where('cantidad_cambio','<', $num)
+                                                   ->get();
+       
+        return  $objDetServiciosCliente;                                          
+
+
+    }
+
+
+    public static function  buscarPorClienteYservicio($cliente_vehiculo_id, $clase_vehiculo_servicio_id){
+
+        $lstDetServiciosCliente=DetServiciosCliente::where('cliente_vehiculo_id','=',$cliente_vehiculo_id) 
+                                                   ->where('clase_vehiculo_servicio_id','=',$clase_vehiculo_servicio_id)
+                                                   ->where('estado_id','=', Estado::$estadoActivo)
+                                                   ->get();
+       
+        return  $lstDetServiciosCliente;                                          
+
+
+    }
+        
+    
+
+    
 
 }

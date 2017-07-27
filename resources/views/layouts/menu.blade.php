@@ -8,10 +8,10 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Fast-Duty') }}</title>
-
+    <title>Fast-Duty</title>
+     <link rel="shortcut icon" href="../imagenes/Lubriauto.png" />
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">   
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">   
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta charset="utf-8" />
         <title>Dashboard - Ace Admin</title>
@@ -42,27 +42,28 @@
         {!!Html::script('../js/jquery-ui.min.js') !!}      
         {!!Html::script('../js/bootbox.min.js') !!}
         {!!Html::script('../js/jquery.js') !!}
-        {!!Html::script('../js/jquery-2.1.4.min.js') !!}
+       <!-- {!!Html::script('../js/jquery-2.1.4.min.js') !!}-->
         {!!Html::script('../js/jquery.BlockUI.js') !!}
         {!!Html::script('../js/jquery.js') !!}
-        <!--[if lte IE 9]>
-          <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
-        <![endif]-->
-
-        <!-- inline styles related to this page -->
-
-        <!-- ace settings handler -->
+        
         <script src="../js/ace-extra.min.js"></script>
         <script http="http://malsup.github.io/jquery.blockUI.js"></script>
         
         {!!Html::style('../css/dataTables/dataTables.bootstrap.min.css') !!}
         {!!Html::style('../css/dataTables/responsive.bootstrap.min.css') !!}
+
+        
+        {!!Html::style('../css/dataTables/jquery.dataTables.min.css') !!}
+        {!!Html::style('../css/dataTables/buttons.dataTables.min.css') !!}
+
+
         <!-- JQUERY -->
         {!!Html::script('../js/dataTables/jquery.dataTables.min.js')!!}
         {!!Html::script('../js/dataTables/dataTables.bootstrap.min.js')!!}
         {!!Html::script('../js/dataTables/jquery.selectable-list.js')!!}
-       
 
+        
+    
 
     </head>
 
@@ -188,6 +189,15 @@
                                 <b class="arrow"></b>
                             </li>
 
+                            <li class="">
+                                <a href="insumos">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Insumos
+                                </a>
+
+                                <b class="arrow"></b>
+                            </li>
+
                             
                         </ul>
                     </li>
@@ -221,32 +231,7 @@
                                 <b class="arrow"></b>
                             </li>
 
-                            <li class="">
-                                <a href="form-wizard.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Wizard &amp; Validation
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
-
-                            <li class="">
-                                <a href="wysiwyg.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Wysiwyg &amp; Markdown
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
-
-                            <li class="">
-                                <a href="dropzone.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Dropzone File Upload
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
+                         
                         </ul>
                     </li>
 
@@ -275,68 +260,11 @@
                                 <b class="arrow"></b>
                             </li>
 
-                            <li class="">
-                                <a href="inbox.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Inbox
-                                </a>
 
-                                <b class="arrow"></b>
-                            </li>
+                       
 
-                            <li class="">
-                                <a href="pricing.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Pricing Tables
-                                </a>
 
-                                <b class="arrow"></b>
-                            </li>
-
-                            <li class="">
-                                <a href="invoice.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Invoice
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
-
-                            <li class="">
-                                <a href="timeline.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Timeline
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
-
-                            <li class="">
-                                <a href="search.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Search Results
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
-
-                            <li class="">
-                                <a href="email.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Email Templates
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
-
-                            <li class="">
-                                <a href="login.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Login &amp; Register
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
+                           
                         </ul>
                     </li>
 
@@ -390,10 +318,13 @@
     <script src="../js/ace-elements.min.js"></script>
     <script src="../js/ace.min.js"></script>
      
-    <script src="../js/jquery-3.0.0.js"></script>
     <script src="../js/jquery-ui.min.js"></script>
     <script src="../js/bootbox.min.js"></script>
+    <script src="../js/moment.min.js"></script>
       
+
+
+
     <script src="../bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
     <script src="../bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
     <script src="../js/dataTables/jquery.selectable-list.js"></script>
@@ -401,8 +332,17 @@
     <script src="../js/dataTables/jquery.selectable-list.js"></script>
     
     
+   
+            
     <script src="../js/dataTables/dataTables.responsive.min.js"></script>
+    <script src="../js/dataTables.buttons.min.js"></script>
+    <script src="../js/pdfmake.min.js"></script>
 
+    <script src="../js/vfs_fonts.js"></script>
+    <script src="../js/buttons.html5.min.js"></script>
+
+        
+                    
     
     
 

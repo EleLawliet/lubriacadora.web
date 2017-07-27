@@ -38,6 +38,12 @@ class Insumos extends Model
         return $this->hasMany(DetServiciosCliente::class, 'det_servicios_cliente_id'); 
     }
 
+    public static function cargarInsumos(){
 
+        $lstInsumos = Insumos::with('estado')->get();
+        return $lstInsumos;  
+        
+
+     }
 
 }

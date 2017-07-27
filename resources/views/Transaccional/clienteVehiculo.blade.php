@@ -16,13 +16,13 @@
             </div><!-- /.page-header -->
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
-                <div class="panel-heading">Registro de Cliente / vehiculo</div>
-
+            <div class="">
+               
                 <div class="">
+                    
 
                <br>
-                <form class="form-horizontal" id="sample-form" method="POST" enctype="multipart/form-data"  action="{{url('/guardarTipoServicio')}}" role="form">
+              <form class="form-horizontal" id="sample-form" method="POST" enctype="multipart/form-data"  action="{{url('/guardarTipoServicio')}}" role="form">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                          @if(Session::has('message'))
                                 <div id="mensajesController" class="alert alert-success" >
@@ -48,15 +48,30 @@
                             </div>
                         @endif
                         <div id="mensajes" name="mensajes" class="hide">
-                          <label id="textoMensaje" name="textoMensaje"></label>
+                                    
+                                     <label id="textoMensaje" name="textoMensaje"></label>
                         </div>
-                  <input name="tipo_servicio_id" type="hidden" id="tipo_servicio_id" class="width-100" />
-
+                  
          <div class="row"> 
           <div class="col-sm-10">     
                
+
               <div class="form-group ">
-                                <label for="" class="col-xs-1 col-sm-2 control-label no-padding-right">Cedula</label>
+                    <span class="block input-icon input-icon-right">
+                    <label  for=""  class="col-xs-5 col-sm-2 control-label no-padding-right">N.Solicitud</label>
+                    
+                    <div class="col-xs-1 col-sm-3">            
+                          <input name="servicios_ciente_id" type="number" id="servicios_ciente_id" class="width-100" />   
+                     </div>
+                       <div class="col-xs-2 col-sm-1">  
+                         <a class="btn_buscarSolicitud"  href="#" data-toggle="modal"  data-placement="left" title= "Consulta Trabajador">
+                                    <i class="fa fa-search icon-paciente"></i>
+                          </a>
+                      </div>  
+                        
+              </div>
+              <div class="form-group ">
+                      <label for="" class="col-xs-1 col-sm-2 control-label no-padding-right">Cedula</label>
                       
                         <div class="col-xs-5 col-sm-3">
                           <span class="block input-icon input-icon-right">
@@ -70,27 +85,50 @@
                           </a>
                       </div>
                       <div class="col-xs-5 col-sm-3"> 
-                          <input name="nombre" type="text" placeholder="Nombre" id="nombre" class="width-100" />
+                          <input name="nombre" type="text" disabled="true" placeholder="Nombre" id="nombre" class="width-100" />
+                          <input name="cliente_id" type="hidden"  id="cliente_id" class="width-100" />
+                          <input name="det_servicios_cliente_id" type="hidden"  id="det_servicios_cliente_id" class="width-100" />
+
+                          
+                      <input name="cantidad_cambio" type="hidden"  id="cantidad_cambio" class="width-100" />
+
                       </div>
                       <div class="col-xs-5 col-sm-3">
-                        <input name="apellido" placeholder="Apellido" type="text" id="apellido" class="width-100" />
+                        <input name="apellido" placeholder="Apellido" disabled="true" type="text" id="apellido" class="width-100" />
                       </div>    
               </div>
 
               <div class="form-group ">
                     <span class="block input-icon input-icon-right">
                     <label  for=""  class="col-xs-5 col-sm-2 control-label no-padding-right">vehículos</label>
-                    <div class="col-xs-5 col-sm-3">
-                         <div id="cmb_periodo_id"></div>
+                    <div class="col-xs-5 col-sm-7">
+                         <div id="cmb_vehiculos"></div>
                     </div> 
-                  <div class="col-xs-5 col-sm-4"> 
-              <input name="nombre_clase_vehiculo" type="text" placeholder="Clase vehiculo" id="nombre_clase_vehiculo" class="width-100" />
-                  </div>       
+                    <div class="col-xs-1 col-sm-3">            
+                      <select id="insumos_id" name="insumos_id" class="form-control" data-placeholder="Click to Choose...">
+
+                          <option value="">Insumos...</option>
+                           @foreach($lstInsumos as $item) 
+                                        <option  value="{{$item->estado_id}}">{{$item->nombre}}</option> 
+                           @endforeach
+                        </select>          
+                     </div>   
+                        
               </div>
 
               <div class="form-group ">
-                     <label for="" class="col-xs-1 col-sm-2 control-label no-padding-right">Servicios</label>
-                    <div class="col-xs-1 col-sm-7">
+
+                     <label for="" class="col-xs-12 col-sm-2 control-label no-padding-right">Km Inicio</label>
+
+                    <div class="col-xs-12 col-sm-3">
+                      <span class="block input-icon input-icon-right">
+                        <input name="Kilometraje_inicio" title="Kilometraje inicio"  type="text" id="Kilometraje_inicio" class="width-100" />
+                       
+                      </span>
+                    </div>
+
+                     
+                    <div class="col-xs-1 col-sm-6">
                       <span class="block input-icon input-icon-right">
                         
                         <div id="cmbServicio"></div>
@@ -98,44 +136,53 @@
                     </div>
                                 <div class="help-block col-xs-12 col-sm-reset inline"> </div>
 
-                     <div class="col-xs-1 col-sm-3">            
-                      <select id="estado_id" name="estado_id" class="form-control" data-placeholder="Click to Choose...">
-
-                          <option value="">Insumos...</option>
-                           @foreach($lstInsumos as $item) 
-                                        <option  value="{{$item->estado_id}}">{{$item->nombre}}</option> 
-                           @endforeach
-                        </select>          
-
-                     </div>   
-
+                     
               </div>
-
                <div class="form-group ">
-                                <label for="" class="col-xs-12 col-sm-2 control-label no-padding-right">Km Inicio</label>
-
-                    <div class="col-xs-12 col-sm-7">
+                      <label for="" class="col-xs-12 col-sm-2 control-label no-padding-right">Km Sustitución</label>
+                    <div class="col-xs-12 col-sm-3">
                       <span class="block input-icon input-icon-right">
-                        <input name="correo" type="text" id="correo" class="width-100" />
+                        <input name="kilometraje_sustitucion" placeholder="kilometraje_sustitucion" type="text" id="kilometraje_sustitucion" class="width-100" />
                        
                       </span>
                     </div>
-                                <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                    <label for="" class="col-xs-2 col-sm-3 control-label no-padding-right">Fecha Sustitución</label>
+                    <div class="col-xs-12 col-sm-3">
+                        
+                      <span class="block input-icon input-icon-right">
+                        <input name="fecha_sustitucion" type="date" id="fecha_sustitucion" value="" class="width-100" />
+                       
+                      </span>
+                    </div>
+                         
+                         <a id="btn_agregar" class="col-md-1" type="button" data-toggle="tooltip" data-placement="left" title="Agrega vehiculo">
+                                <i class="fa fa-plus-circle fa-2x"></i>
+                    </a>
               </div>
-               
+
+              <hr align="left" noshade="noshade" size="2" width="120%" />
+              <div class="form-group ">
+                   <div class="col-xs-3 col-md-8">  
+                   </div>
+                    <div class="col-xs-3 col-md-2">  
+                          <button id="btn_editar" class="btn btn-primary " type="button"  />  Guardar</button> 
+
+                    </div>
+                                        <div class="col-xs-3 col-md-2">  
+                                                                    <button class ="btn btn-primary" id="btn_limpiar" type="button"  > Limpiar </button> 
+
+                                        </div>
+
+              </div>
             </div>  
-
-             
-
-            
-
       </div>       
-                   
                     <div class="form-group "> 
-                        <div class="panel-heading">LISTADO DE SERVICIOS</div>
+                           <div class="panel-heading">Listado de Servicios</div>
                                <div id="tbl_vehiculo"></div> 
                                 
-                          </div> 
+                    </div> 
+
+
                   </form>
                   
                 </div>
@@ -145,10 +192,115 @@
 </div>
 
 <script type="text/javascript">
-   function consultarcedulas(){ 
-               
+
+    function limpiarMensajes(){
+         $('#mensajes').removeClass('alert alert-danger');
+         $('#mensajes').removeClass('alert alert-success');
+         $('#mensajes').removeClass('alert alert-info');
+         $('#mensajes').addClass('hide');
+         $('#mensajesController').removeClass('alert alert-danger');
+         $('#mensajesController').removeClass('alert alert-success');
+         $('#mensajesController').removeClass('alert alert-info');
+         $('#mensajesController').addClass('hide');    
+    }
+
+     function consultarDias(){
+
+         
+        var Kilometraje_inicio=$("#Kilometraje_inicio").val();
+        var clase_vehiculo_servicio_id=$("#clase_vehiculo_servicio_id").val();
+        var vehiculo_id=$("#vehiculo_id").val();
+        var cliente_id=$("#cliente_id").val();
+        var bValid=false;
+
+         $('#fecha_sustitucion').val("");
+         $('#kilometraje_sustitucion').val("");
+         $("#cantidad_cambio").val("");
+        //bValid = bValid && validarCampoLleno(Kilometraje_inicio, 'Km Inicio');
+      
+        if(Kilometraje_inicio === "" || Kilometraje_inicio === "0" || Kilometraje_inicio === undefined || Kilometraje_inicio.length === 0) {
+                $('#mensajes').addClass('alert alert-danger');
+                $('#mensajes').removeClass('hide');
+                var tips = $("#textoMensaje");
+                tips.text("Error ! Km Inicio  no puede estar vacío ");
+                bValid=false;
+            } else {
+                bValid=true;
+            }
+
+
+      if (bValid == true){
+
+
+           $.ajax({
+                    url: '{{ url('/calculaServicos') }}',
+                    type: 'post',
+                    data: {'Kilometraje_inicio': Kilometraje_inicio,'clase_vehiculo_servicio_id':clase_vehiculo_servicio_id,
+                    'vehiculo_id':vehiculo_id,'cliente_id':cliente_id},
+                     beforeSend: function() {
+                        //$.blockUI({ message: '<h4><img src="../imagenes/gif/progress.gif" /></br> PROCESANDO... Espere un momento porfavor </h4>' });
+                      },
+                      error : function(jqXHR, textStatus, errorThrown) {
+                            var gnrMensaje =$("#gnrMensaje");
+                            if(jqXHR.status == '401'){
+                                gnrMensaje.text("Su sesión ha caducado, porfavor de click en Salir y vuelva a Ingresar."); 
+                                $('#gnrError').modal('show');
+                            }else{
+                               alert('Disculpe, existió un problema');
+                            }      
+                      },
+                      success: function(data) {
+                        
+                       
+
+                            if(data.fecha_sustitucion!=null){
+                                 var fechaSustitucion=data.fecha_sustitucion.date;
+                                 var fechaEjemplo = moment(data.fecha_sustitucion.date, 'YYYY-MM-DD');
+                                  $('#fecha_sustitucion').val(moment(fechaEjemplo).format('YYYY-MM-DD'));
+
+                                  limpiarMensajes();
+                            }
+                            if(data.kilometraje_sustitucion!=null){
+                                  $('#kilometraje_sustitucion').val(data.kilometraje_sustitucion);
+                                  limpiarMensajes();
+
+                            }
+                            if(data.cantidad_cambio!=null){
+                                  $("#cantidad_cambio").val(data.cantidad_cambio);
+                                  limpiarMensajes();
+                            }
+                            
+
+                            if(data.mensaje!=null){
+                             
+                               
+                                  $('#mensajes').addClass('alert alert-danger');
+                                  $('#mensajes').removeClass('hide');
+                                  var tips = $("#textoMensaje");
+                                  tips.text("Error ! "+data.mensaje+"");
+                                 
+                                  $("#clase_vehiculo_servicio_id").val("");
+                            }
+
+                            // mensajePersonalizado("", 'No se encontrarón registros con cedula N.');
+
+                     },
+                     complete: function() {
+                       
+                    }
+                           
+                   });
+
+           }
+
+        
+     }
+
+      function consultarcedulas(){
+
                var vehiculo_id= $("#vehiculo_id").val();
-               console.log(vehiculo_id);
+               if(vehiculo_id!=""){
+
                     $.ajax({
                          url: '{{ url('/buscarserviciosPorClaseVehiculo') }}',
                          type: 'post',
@@ -161,20 +313,16 @@
                             if(jqXHR.status == '401'){
                                 gnrMensaje.text("Su sesión ha caducado, porfavor de click en Salir y vuelva a Ingresar."); 
                                 $('#gnrError').modal('show');
+                            }else{
+                               alert('Disculpe, existió un problema');
                             }     
                         },
                          success: function(data) {
 
-                          /*for(var i in data){
-                                  
-                                 $("#nombre_clase_vehiculo")=data[i].clase_vehiculo.nombre; 
-
-                          }
-                          $("#nombre_clase_vehiculo")=data[i].clase_vehiculo.nombre; */
 
                         // var cadena = JSON.stringify(data);
                          var materias= verTipoArchivo(data);
-                                var message='<select id="cedula_ingreso_id" name="cedula_ingreso_id"  class="form-control">'+materias+
+                                var message='<select id="clase_vehiculo_servicio_id"  onclick="consultarDias();" name="clase_vehiculo_servicio_id"  class="form-control">'+materias+
                                             '</select>';
                                $("#cmbServicio").empty();
                                $("#cmbServicio").append(message);  
@@ -182,29 +330,26 @@
                      complete: function() {
                        // setTimeout($.unblockUI, 1000);
                     }
-                           
+                       
                    });
 
                     function verTipoArchivo(data){
-                         var tregistros = '<option value="">Seleccione..</option>';
+                         var tregistros = '<option value="">Servicios..</option>';
                              for(var i in data){
-                                 tregistros =tregistros + '<option value='+data[i].tipo_servicio_id+'>'+ data[i].tipo_servicio.nombre +' </option>';
+                                 tregistros =tregistros + '<option value='+data[i].clase_vehiculo_servicio_id+'>'+ data[i].tipo_servicio.nombre +' </option>';
 
                           }
                             return tregistros;
                     }
-
-        } 
+            }   
+        }
    
 </script>
+
 
 @endsection
 @section("scripts")
-
-  <script type="text/javascript">
-   
-
-</script>
+  
 <script type="text/javascript">
  
 
@@ -217,6 +362,119 @@ $(document).ready(function () {
             }
         });
 
+
+         $(".btn_buscarSolicitud").click(function (event) {
+                  $('#mensajes').removeClass('alert alert-success');
+                  $('#mensajes').addClass('hide');
+                                                  
+                 
+                  var servicios_ciente_id= $("#servicios_ciente_id").val();
+                  menu=[];
+                  limpiar();
+                     $.ajax({
+                              url: '{{ url('/cargarPorSolicitudClienetVehiculo') }}',
+                              type: 'post',
+                              data: {'servicios_ciente_id':servicios_ciente_id},
+                               beforeSend: function(){
+                                },
+                               success: function(data) {  
+                                console.log(data);
+                                
+                                if(data.length>0){ 
+
+                                        var objCliente;
+                                        var objclienteVehiculo;
+
+                                         for(var i in data){
+
+                                          
+                                           objCliente=data[i].servicios_cliente.cliente; 
+
+
+                                               var miAuto = new Object();
+                                  
+                                               miAuto["det_servicios_cliente_id"]=data[i].det_servicios_cliente_id;
+                                               miAuto["insumos_id"] = data[i].insumos_id;
+                                                miAuto["vehiculo_id"] = data[i].vehiculo_id;
+                                                miAuto["vehiculoNombre"] = data[i].cliente_vehiculo.vehiculo.marca;
+                                                miAuto["servicioNombre"] = data[i].clase_vehiculo_servicio.tipo_servicio.nombre;
+                                                miAuto["InsumosNombre"] = data[i].insumos.nombre;
+                                                miAuto["Kilometraje_inicio"] =data[i].kilometraje_inicio;
+                                                miAuto["kilometraje_sustitucion"] =data[i].kilometraje_sustitucion;
+                                                miAuto["fecha_sustitucion"] =data[i].fecha_sustitucion;
+                                                miAuto["clase_vehiculo_servicio_id"] = data[i].clase_vehiculo_servicio_id;
+                                                if(data[i].cantidad_cambio!=null){
+                                                   miAuto["cantidad_cambio"] = data[i].cantidad_cambio; 
+                                                }else{
+                                                    miAuto["cantidad_cambio"] ="";
+                                                }
+                                                  
+
+                                                miAuto["Fecha_Inicio"] = data[i].fecha_inicio; 
+                                   
+                                    
+                             
+                                                menu.push(miAuto);
+
+
+                                         }
+                                        
+                                        $("#nombre").val(objCliente.nombre);
+                                        $("#apellido").val(objCliente.apellido);
+                                        $("#cedula").val(objCliente.cedula);
+                                        
+                                        
+                                       console.log(menu);
+                                        tabla=dibujatabla(menu);
+                                        $("#tbl_vehiculo").empty();
+                                        document.getElementById('tbl_vehiculo').innerHTML = tabla; 
+                                         addAEvent(); 
+                                         $("#btn_editar").prop('disabled',true);
+
+
+
+
+
+
+                                         $('#automovil').DataTable({
+                                               'columnDefs': [{
+                                               'targets': 0,
+                                               'searchable': false,
+                                               'orderable': false,
+                                               'className': 'dt-body-center',
+                                               'search': 'applied',
+                                               'render': function (data, type, full, meta){
+                                                
+                                                   return '<input class="vehiculo_id" type="checkbox" checked="true" name="idprov[]" value="' + $('<div/>').text(data).html() + '">';
+                                                 } 
+                                              
+                                            }],
+                                                'order': [[1, 'asc']],
+                                                        dom: 'Bfrtip',
+                                             buttons: [
+                                                {
+                                                    extend: 'pdfHtml5',
+                                                    download: 'open'
+                                                }
+                                            ]
+
+                                        });
+
+                                }else{
+                                    
+                                     mensajePersonalizado("", 'No se encontrarón registros con cedula N. '+cedula+'');
+                                }
+           
+                              },
+                              error: function (xhr, status) {
+                                  alert('Disculpe, existió un problema');
+                              }  
+
+                          });   
+                
+            }); 
+
+
         $('#tblMateria').DataTable({
                 responsive: true
         });
@@ -224,33 +482,29 @@ $(document).ready(function () {
   function limpiar(){
       $("#nombre").val("");
       $("#apellido").val("");
-     
-      $("#telefono").val("");
-      $("#movil").val("");
-      $("#correo").val("");
-      $("#direccion").val("");
-      $("#cliente_id").val("");
+      $("#cedula").val();      
+      $("#vehiculo_id").val();
+      $("#insumos_id").val();
+      $("#Kilometraje_inicio").val();
+      $("#kilometraje_sustitucion").val();
+      $("#fecha_sustitucion").val();
+      $("#clase_vehiculo_servicio_id").val();
+      $("#cantidad_cambio").val();
 
-      $("#marca").val("");
-      $("#color").val("");
-      $("#placa").val("");
-      $("#uso_personal").val("");
-      $("#anio").val("");
-      $("#clase_vehiculo").val("");
       $("#tbl_vehiculo").append("");
-      $("#estado_id").val("");
       $("#select_id").val("");
       menu=[];
       document.getElementById('tbl_vehiculo').innerHTML = ""; 
-      $('#mensajesController').removeClass('alert alert-danger');
-       $('#mensajesController').removeClass('alert alert-success');
-       $('#mensajesController').removeClass('alert alert-info');
-       $('#mensajesController').addClass('hide');   
-  }
+       limpiarMensajes();
+        $("#btn_editar").prop('disabled',false);
+
+       }
  
   $("#btn_limpiar").click(function (event) {
      limpiar();
      $("#cedula").val("");
+
+
   }); 
 
  $(".btn_buscar").click(function (event) {
@@ -263,9 +517,9 @@ $(document).ready(function () {
          var pacienteDatos = eval('(' + cadena + ')');
 
         var cedula= $("#cedula").val();
-        menu=[];
+        lstVehiculo=[];
         limpiar();
-        var message;
+        var message=null;
            $.ajax({
                     url: '{{ url('/cargarPorCedula') }}',
                     type: 'post',
@@ -282,7 +536,7 @@ $(document).ready(function () {
                                for(var i in data){
 
                                  data[i].vehiculo['cliente_vehiculo_id']=data[i].cliente_vehiculo_id;
-                                 menu.push(data[i].vehiculo);
+                                 lstVehiculo.push(data[i].vehiculo);
                                  objCliente=data[i].cliente; 
 
                                }
@@ -290,18 +544,14 @@ $(document).ready(function () {
                               $("#nombre").val(objCliente.nombre);
                               $("#apellido").val(objCliente.apellido);
                               $("#cedula").val(objCliente.cedula);
-                             
-                               var vehiculos= verPeriodo(menu);
+                              $("#cliente_id").val(objCliente.cliente_id);
+                               
+                               var vehiculos= verPeriodo(lstVehiculo);
                                message='<select id="vehiculo_id"   onclick="consultarcedulas();" name="vehiculo_id" class="form-control">'+vehiculos+'</select>';
 
-                               $("#cmb_periodo_id").empty();
-                               $("#cmb_periodo_id").append(message);
-                              
-                                     
-                               
+                               $("#cmb_vehiculos").empty();
+                               $("#cmb_vehiculos").append(message);                              
                                //consultaServicios();
-
-
                       }else{
                           
                            mensajePersonalizado("", 'No se encontrarón registros con cedula N. '+cedula+'');
@@ -316,9 +566,9 @@ $(document).ready(function () {
 
 
             function verPeriodo(data){
-                         var tregistros = '<option value="">Seleccione..</option>';
+                         var tregistros = '<option value="">Vehiculos..</option>';
                              for(var i in data){
-                                 tregistros =tregistros + '<option value='+data[i].vehiculo_id+'>'+ data[i].marca +' Clase Vehiculo '+data[i].claseVehiculo.nombre+ ' </option>';
+                                 tregistros =tregistros + '<option value='+data[i].vehiculo_id+'>Nombre :'+ data[i].marca +' ,Clase vehiculo: '+data[i].clase_vehiculo.nombre+ ' </option>';
 
                           }
                             return tregistros;
@@ -332,132 +582,97 @@ $(document).ready(function () {
            
 
 
-      function dibujatabla2(menu){
-
-         var tabla = '<table id="automovil" class="table table-striped table-bordered" >'
-        tabla+= '<thead>'+
-                '<tr>'+
-                   '<th style="background: rgba(239, 255, 0, 0.31); display:none"> <input  checked="true" type="checkbox" name="select_alls" value="" id="example-select-alls"></th>'+
-                     '<th>Marca</th>'+
-                     '<th>Color</th>'+
-                     '<th>Placa</th>'+
-                     '<th>Uso Personal</th>'+
-                     '<th>Anio</th>'+
-                     '<th>Clase Vehiculo</th>'+
-                     '<th>Estado</th>'+
-                     '<th style="display:none"></th>'+
-                     '<th>Accion</th>'+
-                 '</tr>'+
-              '</thead><tbody>'; 
-         
-        for (var i in menu) 
-        {
-
-           menu[i]["clase_vehiculo"]=menu[i].clase_vehiculo.nombre;
-           menu[i]["estadoNombre"] = menu[i].estado.nombre;
-        
-           tabla += '<tr data-id={"vehiculo_id":"'+menu[i].vehiculo_id+'","marca":"'+menu[i].marca+'","color":"'+menu[i].color+'","placa":"'+menu[i].placa+'","uso_personal":"'+menu[i].uso_personal+'","anio":"'+menu[i].anio+'","clase_vehiculo":"'+menu[i].clase_vehiculo_id+'","estado_id":"'+menu[i].estado_id+'"}>'
-           +'<td style="display:none">'+menu[i].vehiculo_id+'</td>'
-          +'<td>'+menu[i].marca+'<input name="marca" value="'+menu[i].marca+'" type="hidden" id="marca" class="marca" /></td>'
-          +'<td>'+menu[i].color+'<input name="color" value="'+menu[i].color+'" type="hidden" id="color" class="color" /></td>' 
-          +'<td>'+menu[i].placa+'<input name="placa" value="'+menu[i].placa+'" type="hidden" id="placa" class="placa" /></td>'
-          +'<td><input name="uso_personal" value="'+menu[i].uso_personal+'" type="hidden" id="uso_personal" class="uso_personal" />'+menu[i].uso_personal+'</td>'
-          +'<td>'+menu[i].anio+' <input name="anio" value="'+menu[i].anio+'" type="hidden" id="anio" class="anio" /></td>'
-          +'<td>'+menu[i].clase_vehiculo+'<input name="clase_vehiculo_id" value="'+menu[i].clase_vehiculo_id+'" type="hidden" id="clase_vehiculo_id" class="clase_vehiculo_id" /></td>'
-          +'<td>'+menu[i].estadoNombre+' <input name="estado_id" value="'+menu[i].estado_id+'" type="hidden" id="estado_id" class="estado_id" /></td>'
-          +'<td style="display:none"><input name="cliente_vehiculo_id" value="'+menu[i].cliente_vehiculo_id+'" type="hidden" id="cliente_vehiculo_id" class="cliente_vehiculo_id" /></td>'
-          +'<td><button type="button"  class="fa fa-pencil-square-o btn_editVehiculos" ></button> </td></tr>';
-          
-        }
-         
-        tabla += '</tbody></table>'
-
-        return tabla;
-    }      
-
      
       $("#btn_agregar").click(function (event) {
 
+
       var bValid = true; 
       
-      bValid = bValid && validarCampoLleno($("#marca").val(), 'Marca');
-      bValid = bValid && validarCampoLleno($("#color").val(), 'Color');
-      bValid = bValid && validarCampoLleno($("#placa").val(), 'Placa');
-      bValid = bValid && validarCampoLleno($("#uso_personal").val(), 'Uso personal');
-      bValid = bValid && validarCampoLleno($("#anio").val(), 'Anio');
-      bValid = bValid && validarCampoLleno($("#clase_vehiculo").val(), 'Clase vehiculo');
-      bValid = bValid && validarCampoLleno($("#estado_id").val(), 'Estado');
-      
-      
+
+      var vehiculo_id =$("#vehiculo_id").val();
+      var insumos_id = $("#insumos_id").val();
+      var Kilometraje_inicio =$("#Kilometraje_inicio").val();
+      var kilometraje_sustitucion = $("#kilometraje_sustitucion").val();
+      var fecha_sustitucion = $("#fecha_sustitucion").val();
+      var clase_vehiculo_servicio_id =$("#clase_vehiculo_servicio_id").val();
+
+      bValid = bValid && validarCampoLleno(vehiculo_id, 'Vehiculo');
+      bValid = bValid && validarCampoLleno(insumos_id, 'Insumos');
+      bValid = bValid && validarCampoLleno(Kilometraje_inicio, 'kilometraje inicio');
+      bValid = bValid && validarCampoLleno(kilometraje_sustitucion, 'kilometraje sustitución');
+      bValid = bValid && validarCampoLleno(fecha_sustitucion, 'Fecha sustitución');
+      bValid = bValid && validarCampoLleno(clase_vehiculo_servicio_id, '  Servicio');
+     
 
       if (bValid == true){
-                var combo = document.getElementById("estado_id");
-                var estadoNombre = combo.options[combo.selectedIndex].text;
-                var combo2 = document.getElementById("clase_vehiculo");
-                var claseVehiculo = combo2.options[combo2.selectedIndex].text;
-                var existe=false;
-                
-                if(menu.length>0){
-                     for (var i in menu) 
-                    {
+                var combo = document.getElementById("vehiculo_id");
+                var vehiculoNombre = combo.options[combo.selectedIndex].text;
+                var combo2 = document.getElementById("clase_vehiculo_servicio_id");
+                var servicioNombre = combo2.options[combo2.selectedIndex].text;
+                var combo3 = document.getElementById("insumos_id");
+                var InsumosNombre = combo3.options[combo3.selectedIndex].text;
+              
 
-                          if(menu[i].vehiculo_id==$("#select_id").val()){
-                            menu[i].vehiculo_id=$("#select_id").val();
-                            menu[i].marca=$("#marca").val();
-                            menu[i].color=$("#color").val();
-                            menu[i].placa=$("#placa").val();
-                            menu[i].uso_personal=$("#uso_personal").val();
-                            menu[i].anio=$("#anio").val();
-                            menu[i].clase_vehiculo=claseVehiculo;
-                            menu[i].clase_vehiculo_id=$("#clase_vehiculo").val();
-                            menu[i].estado_id=$("#estado_id").val();
-                            menu[i].estadoNombre=estadoNombre;
-                            existe=true;
+                var vehiculo_id =$("#vehiculo_id").val();
+                var insumos_id = $("#insumos_id").val();
+                var Kilometraje_inicio =$("#Kilometraje_inicio").val();
+                var kilometraje_sustitucion = $("#kilometraje_sustitucion").val();
+                var fecha_sustitucion = $("#fecha_sustitucion").val();
+                var clase_vehiculo_servicio_id =$("#clase_vehiculo_servicio_id").val();
+                var cantidad_cambio=$("#cantidad_cambio").val();
+                var existe=false;
+
+
+                  if(menu.length>0){
+                     for (var i in menu) {
+                          if(menu[i].det_servicios_cliente_id==$("#det_servicios_cliente_id").val()){
+
+                                menu[i].det_servicios_cliente_id=$("#det_servicios_cliente_id").val();
+                                menu[i].insumos_id=insumos_id;
+                                menu[i].vehiculo_id=vehiculo_id;
+                                menu[i].vehiculoNombre=vehiculoNombre;
+                                menu[i].servicioNombre=servicioNombre;
+                                menu[i].InsumosNombre=InsumosNombre;
+                                menu[i].Kilometraje_inicio=Kilometraje_inicio;
+                                menu[i].kilometraje_sustitucion=kilometraje_sustitucion;
+                                menu[i].fecha_sustitucion=fecha_sustitucion;
+                                menu[i].clase_vehiculo_servicio_id=clase_vehiculo_servicio_id;
+                                menu[i].cantidad_cambio=cantidad_cambio;
+                                menu[i].Fecha_Inicio=moment().format('YYYY-MM-DD');
+                                existe=true;
 
                           }
-                     }  
-                 } 
+                       }  
+                   } 
 
-              if(!existe){
+              if(!existe){          
 
-                     var fila = $(this).parents('tr');
-                     var cadena = JSON.stringify(fila.data('id'));
-                     var pacienteDatos = eval('(' + cadena + ')');
 
-                    var marca=$("#marca").val();
-                    var color=$("#color").val();
-                    var placa=$("#placa").val();
-                    var usoPersonal=$("#uso_personal").val();
-                    var anio=$("#anio").val();
-                    var claseVehiculo=claseVehiculo;
-                    var estadoNombre=estadoNombre;
-                    var clase_vehiculo_id = $("#clase_vehiculo").val();
-                    var buscar=document.getElementById("clase_vehiculo").value;
-                    var estado_id=$("#estado_id").val();
-                    var miAuto = new Object();
-
-                    miAuto["vehiculo_id"]=menu.length+1;
-                    miAuto["marca"] = marca;
-                    miAuto["color"] = color;
-                    miAuto["placa"] = placa;
-                    miAuto["uso_personal"] = usoPersonal;
-                    miAuto["anio"] = anio;
-                    miAuto["clase_vehiculo"] = claseVehiculo;
-                    miAuto["clase_vehiculo_id"] = clase_vehiculo_id;
-                    miAuto["estado_id"] = estado_id;
-                    miAuto["estadoNombre"] = estadoNombre;
-                    miAuto["cliente_vehiculo_id"] ="";
-                    
+                            var miAuto = new Object();
+                            
+                            miAuto["det_servicios_cliente_id"]=menu.length+1;
+                            miAuto["insumos_id"] = insumos_id;
+                            miAuto["vehiculo_id"] = vehiculo_id;
+                            miAuto["vehiculoNombre"] = vehiculoNombre;
+                            miAuto["servicioNombre"] = servicioNombre;
+                            miAuto["InsumosNombre"] = InsumosNombre;
+                            miAuto["Kilometraje_inicio"] = Kilometraje_inicio;
+                            miAuto["kilometraje_sustitucion"] = kilometraje_sustitucion;
+                            miAuto["fecha_sustitucion"] = fecha_sustitucion;
+                            miAuto["clase_vehiculo_servicio_id"] = clase_vehiculo_servicio_id;
+                            miAuto["cantidad_cambio"] = cantidad_cambio;
+                            miAuto["Fecha_Inicio"] = moment().format('YYYY-MM-DD'); 
+                           
+                            
                      
-                     menu.push(miAuto);
-                 }    
+                              menu.push(miAuto);
+             }    
 
 
                      tabla=dibujatabla(menu);
                 
-                   // $("#tbl_vehiculo").val(tabla);
                     document.getElementById('tbl_vehiculo').innerHTML = tabla; 
-                      addAEvent();   
+                    addAEvent();   
 
 
                      $('#automovil').DataTable({
@@ -469,7 +684,7 @@ $(document).ready(function () {
                            'search': 'applied',
                            'render': function (data, type, full, meta){
                             
-                               return '<input class="vehiculo_id" type="checkbox" checked="true" name="idprov[]" value="' + $('<div/>').text(data).html() + '">';
+                               return '<input class="det_servicios_cliente_id" type="checkbox" checked="true" name="idprov[]" value="' + $('<div/>').text(data).html() + '">';
                              } 
                           
                         }],
@@ -478,15 +693,13 @@ $(document).ready(function () {
 
                     }); 
 
-                $("#marca").val("");
-                $("#color").val("");
-                $("#placa").val("");
-                $("#uso_personal").val("");
-                $("#anio").val("");
-                $("#clase_vehiculo").val("");
-                $("#estado_id").val("");
-                $("#select_id").val("");
-
+                $("#vehiculo_id").val("");
+                $("#insumos_id").val("");
+                $("#kilometraje_sustitucion").val("");
+                $("#fecha_sustitucion").val("");
+                $("#clase_vehiculo_servicio_id").val("");
+                $("#cantidad_cambio").val("");
+                $("#det_servicios_cliente_id").val("");
           }      
        
      });  
@@ -495,63 +708,61 @@ $(document).ready(function () {
 
       function dibujatabla(menu){
 
-         var tabla = '<table id="automovil" class="table table-striped table-bordered" >'
+         var tabla = '<table id="automovil" class="display" >'
         tabla+= '<thead>'+
                 '<tr>'+
                    '<th style="background: rgba(239, 255, 0, 0.31); display:none"> <input  checked="true" type="checkbox" name="select_alls" value="1" id="example-select-alls"></th>'+
-                     '<th>Marca</th>'+
-                     '<th>Color</th>'+
-                     '<th>Placa</th>'+
-                     '<th>Uso Personal</th>'+
-                     '<th>Anio</th>'+
-                     '<th>Clase Vehiculo</th>'+
-                     '<th>Estado</th>'+
-                     '<th style="display:none"></th>'+
-                     '<th>Accion</th>'+
+                     '<th>Vehiculo</th>'+
+                     '<th>Servicio</th>'+
+                     '<th>Insumo</th>'+
+                     '<th>Km Inicio</th>'+
+                     '<th>Km sustitucion</th>'+
+                     '<th>Fecha Sustitución</th>'+
+                     '<th>cantidad cambio</th>'+ 
+                     '<th>Selección</th>'+                   
                  '</tr>'+
               '</thead>'; 
          
         for (var i in menu) 
         {
+
         
-       tabla += '<tr data-id={"vehiculo_id":"'+menu[i].vehiculo_id+'","marca":"'+menu[i].marca+'","color":"'+menu[i].color+'","placa":"'+menu[i].placa+'","uso_personal":"'+menu[i].uso_personal+'","anio":"'+menu[i].anio+'","clase_vehiculo":"'+menu[i].clase_vehiculo_id+'","estado_id":"'+menu[i].estado_id+'"}>'
-   +'<td style="display:none">'+menu[i].vehiculo_id+'</td>'
-        +'<td>'+menu[i].marca+'<input name="marca" value="'+menu[i].marca+'" type="hidden" id="marca" class="marca" /></td>'
-        +'<td>'+menu[i].color+'<input name="color" value="'+menu[i].color+'" type="hidden" id="color" class="color" /></td>' 
-        +'<td>'+menu[i].placa+'<input name="placa" value="'+menu[i].placa+'" type="hidden" id="placa" class="placa" /></td>'
-        +'<td><input name="uso_personal" value="'+menu[i].uso_personal+'" type="hidden" id="uso_personal" class="uso_personal" />'+menu[i].uso_personal+'</td>'
-        +'<td>'+menu[i].anio+' <input name="anio" value="'+menu[i].anio+'" type="hidden" id="anio" class="anio" /></td>'
-        +'<td >'+menu[i].clase_vehiculo+'<input name="clase_vehiculo_id" value="'+menu[i].clase_vehiculo_id+'" type="hidden" id="clase_vehiculo_id" class="clase_vehiculo_id" /></td>'
-        +'<td>'+menu[i].estadoNombre+' <input name="estado_id" value="'+menu[i].estado_id+'" type="hidden" id="estado_id" class="estado_id" /></td>'
-        +'<td style="display:none"><input name="cliente_vehiculo_id" value="'+menu[i].cliente_vehiculo_id+'" type="hidden" id="cliente_vehiculo_id" class="cliente_vehiculo_id" /></td>'
-         +'<td><button type="button"  class="fa fa-pencil-square-o btn_editVehiculos" ></button> </td>'
-           +'</tr>';
+       tabla += '<tr data-id={"det_servicios_cliente_id":"'+menu[i].det_servicios_cliente_id+'","insumos_id":"'+menu[i].insumos_id+'","vehiculo_id":"'+menu[i].vehiculo_id+'","clase_vehiculo_servicio_id":"'+menu[i].clase_vehiculo_servicio_id+'","Kilometraje_inicio":"'+menu[i].Kilometraje_inicio+'","kilometraje_sustitucion":"'+menu[i].kilometraje_sustitucion+'","cantidad_cambio":"'+menu[i].cantidad_cambio+'","fecha_sustitucion":"'+menu[i].fecha_sustitucion+'"}>'
+         +'<td style="display:none">'+menu[i].det_servicios_cliente_id+'</td>'     
+         +'<td>'+menu[i].vehiculoNombre+'<input name="vehiculo_id" value="'+menu[i].vehiculo_id+'" type="hidden" class="vehiculo_id" /></td>' 
+         +'<td>'+menu[i].servicioNombre+'<input name="clase_vehiculo_servicio_id" value="'+menu[i].clase_vehiculo_servicio_id+'" type="hidden"  class="clase_vehiculo_servicio_id" /></td>'
+         +'<td>'+menu[i].InsumosNombre+'<input name="insumos_id" value="'+menu[i].insumos_id+'" type="hidden"  class="insumos_id" /></td>'
+         +'<td><input name="Kilometraje_inicio" value="'+menu[i].Kilometraje_inicio+'" type="hidden" class="Kilometraje_inicio" />'+menu[i].Kilometraje_inicio+'</td>'
+         +'<td>'+menu[i].kilometraje_sustitucion+' <input name="kilometraje_sustitucion" value="'+menu[i].kilometraje_sustitucion+'" type="hidden"  class="kilometraje_sustitucion" /></td>'
+         +'<td>'+menu[i].fecha_sustitucion+' <input name="fecha_sustitucion" value="'+menu[i].fecha_sustitucion+'" type="hidden" id="fecha_sustitucion" class="fecha_sustitucion" /></td>'
+        +'<td>'+menu[i].cantidad_cambio+' <input name="cantidad_cambio" value="'+menu[i].cantidad_cambio+'" type="hidden"  class="cantidad_cambio" /></td>'
+        +'<td><button type="button"  class="fa fa-pencil-square-o btn_edit" ></button> </td>'
+          +'</tr>';
         }
          
         tabla += '</table>'
         return tabla;
 
+    }   
 
 
-
-    }      
 
 function addAEvent(){
-       $(".btn_editVehiculos").click(function (event) {
+       $(".btn_edit").click(function (event) {
          var fila = $(this).parents('tr');
          var cadena = JSON.stringify(fila.data('id'));
-        var pacienteDatos = eval('(' + cadena + ')');
-      
-         $("#select_id").val(pacienteDatos.vehiculo_id);
-         $("#marca").val(pacienteDatos.marca);
-         $("#color").val(pacienteDatos.color);
-         $("#placa").val(pacienteDatos.placa);
-         $("#uso_personal").val(pacienteDatos.uso_personal);
-         $("#anio").val(pacienteDatos.anio);
-         $("#clase_vehiculo").val(pacienteDatos.clase_vehiculo);
-         $("#estado_id").val(pacienteDatos.estado_id);
-         
-       
+        var datos = eval('(' + cadena + ')');
+         $("#vehiculo_id").val(datos.vehiculo_id);
+          buscarServicios(datos.clase_vehiculo_servicio_id);
+         // $("#clase_vehiculo_servicio_id").val(datos.clase_vehiculo_servicio_id);
+          $("#det_servicios_cliente_id").val(datos.det_servicios_cliente_id);
+          $("#kilometraje_sustitucion").val(datos.kilometraje_sustitucion);
+          $("#fecha_sustitucion").val(datos.fecha_sustitucion);
+          $("#cantidad_cambio").val(datos.cantidad_cambio);
+          $("#insumos_id").val(datos.insumos_id);
+          $("#det_servicios_cliente_id").val(datos.det_servicios_cliente_id);
+          limpiarMensajes();
+
        }); 
 }     
 
@@ -561,98 +772,136 @@ function addAEvent(){
       var nombre=$("#nombre").val();
       var apellido=$("#apellido").val();
       var cedula=$("#cedula").val();
-      var telefono=$("#telefono").val();
-      var movil=$("#movil").val();
-      var correo=$("#correo").val();
-      var direccion=$("#direccion").val();
-      var cliente_id=$("#cliente_id").val();
+      var cliente_id= $("#cliente_id").val();
 
-      var objTable = $("#automovil").DataTable();
+      
 
       bValid = bValid && validarCampoLleno(nombre, 'Nombre');
       bValid = bValid && validarCampoLleno(apellido, 'Apellido');
       bValid = bValid && validarCampoLleno(cedula, 'Cedula');
-      bValid = bValid && validarCampoLleno(telefono, 'Telefono');
-      bValid = bValid && validarCampoLleno(movil, 'Movil');
-      bValid = bValid && validarCampoLleno(correo, 'Correo');
-      bValid = bValid && validarCampoLleno(direccion, 'Dirección');
+      
 
 
 
       if (bValid == true){
 
-                  var objVehiculo = new Object();
-                  var objCiente= new Object();
-                  objCiente["nombre"]=nombre;
-                  objCiente["apellido"]=apellido;
-                  objCiente["cedula"]=cedula;
-                  objCiente["telefono"]=telefono;
-                  objCiente["movil"]=movil;
-                  objCiente["correo"]=correo;
-                  objCiente["direccion"]=direccion;
-                  var lstClienteVehiculo=[];
+                 
+                  var lstDetServicioCliente=[];
 
-             
+             var objTables = $("#automovil").DataTable();
                 
-                  $(':checkbox', objTable.rows().nodes()).each(function(){             
-            //if($(this).is('input[name="idprov[]"]:checked')){
-                                var    usoPersonal =  $(this).parent().parent().find(".uso_personal").val();
-                                var    anio =  $(this).parent().parent().find(".anio").val();
-                                var    placa =  $(this).parent().parent().find(".placa").val();
-                                var    marca =  $(this).parent().parent().find(".marca").val();
-                                var    color =  $(this).parent().parent().find(".color").val();
-                                var    clase_vehiculo_id =  $(this).parent().parent().find(".clase_vehiculo_id").val();
-                                var    vehiculo_id =  $(this).parent().parent().find(".vehiculo_id").val();
-                                var    estado_id =  $(this).parent().parent().find(".estado_id").val();
-                                var    cliente_vehiculo_id=$(this).parent().parent().find(".cliente_vehiculo_id").val();
+              $(':checkbox', objTables.rows().nodes()).each(function(){             
+         
+              var    clase_vehiculo_servicio_id =  $(this).parent().parent().find(".clase_vehiculo_servicio_id").val();
+              var    insumos_id =  $(this).parent().parent().find(".insumos_id").val();
+              var    Kilometraje_inicio =  $(this).parent().parent().find(".Kilometraje_inicio").val();
+              var    kilometraje_sustitucion =  $(this).parent().parent().find(".kilometraje_sustitucion").val();
+              var    fecha_sustitucion =  $(this).parent().parent().find(".fecha_sustitucion").val();
+              var    cantidad_cambio =  $(this).parent().parent().find(".cantidad_cambio").val();
+              var    vehiculo_id =  $(this).parent().parent().find(".vehiculo_id").val();
+              
+              
+                                
 
-                                var objVehiculo = new Object();
-                                objVehiculo["vehiculo_id"] = vehiculo_id;
-                                objVehiculo["marca"] = marca;
-                                objVehiculo["color"] = color;
-                                objVehiculo["placa"] = placa;
-                                objVehiculo["uso_personal"] = usoPersonal;
-                                objVehiculo["anio"] = anio;
-                                objVehiculo["clase_vehiculo_id"] = clase_vehiculo_id;
-                                objVehiculo["estado_id"] = estado_id;
-                                objVehiculo["cliente_vehiculo_id"] = cliente_vehiculo_id;
+                      var objVehiculo = new Object();
+                      objVehiculo["clase_vehiculo_servicio_id"] = clase_vehiculo_servicio_id;
+                      objVehiculo["insumos_id"] = insumos_id;
+                      objVehiculo["Kilometraje_inicio"] = Kilometraje_inicio;
+                      objVehiculo["kilometraje_sustitucion"] = kilometraje_sustitucion;
+                      objVehiculo["fecha_sustitucion"] = fecha_sustitucion;
+                      objVehiculo["cantidad_cambio"] = cantidad_cambio;
+                      objVehiculo["vehiculo_id"] = vehiculo_id;
+                      objVehiculo["cliente_id"] =cliente_id;
 
-                    lstClienteVehiculo.push(objVehiculo);
+                      
                     
+
+                      lstDetServicioCliente.push(objVehiculo);
+                      
                   });
 
-                if(lstClienteVehiculo.length==0){
+                if(lstDetServicioCliente.length==0){
 
                    validarCampoLleno("", 'ingrese un vehiculo');
                    return;
                 }
+                    
+                   
+                     
+                       $.ajax({
+                          url: '{{ url('/ingresoServiciosCliente') }}',
+                          type: 'post',
+                          data: {'lstDetServicioCliente':lstDetServicioCliente, 'cliente_id': cliente_id},
+                           beforeSend: function(){
+                            },
+                           success: function(data) {  
+                             
+                              window.location.reload(true); 
+       
+                          },
+                          error: function (xhr, status) {
+                              alert('Disculpe, existió un problema');
+                          }  
 
-                    console.log(cliente_id);
-                     $.ajax({
-                                url: '{{ url('/ingresoClienteVehiculo') }}',
-                                type: 'post',
-                                data: {'lstVehiculos':lstClienteVehiculo, 'cliente': objCiente, 'cliente_id':cliente_id},
-                                 beforeSend: function(data){
-                                        $('#mensajes').removeClass('alert alert-danger');
-                                        $('#mensajes').addClass('hide');
-                                        
-
-                                      },
-                                 success: function(data) {  
-                                    console.log(data);
-                                    window.location.reload(true); 
-                                },
-                                error: function ( xhr, status,error) {
-                                 
-                                    alert('Disculpe, existió un problema');
-                                }  
-
-                            }); 
+                    });   
                   
 
         }
 
      });
+
+
+       function buscarServicios(servicio_id){
+
+               var vehiculo_id= $("#vehiculo_id").val();
+               if(vehiculo_id!=""){
+
+                    $.ajax({
+                         url: '{{ url('/buscarserviciosPorClaseVehiculo') }}',
+                         type: 'post',
+                         data: {'vehiculo_id': vehiculo_id},
+                         beforeSend: function() {
+                            //$.blockUI({ message: '<h4><img src="../imagenes/gif/progress.gif" /></br> PROCESANDO... Espere un momento porfavor </h4>' });
+                          },
+                         error : function(jqXHR, textStatus, errorThrown) {
+                            var gnrMensaje =$("#gnrMensaje");
+                            if(jqXHR.status == '401'){
+                                gnrMensaje.text("Su sesión ha caducado, porfavor de click en Salir y vuelva a Ingresar."); 
+                                $('#gnrError').modal('show');
+                            }else{
+                               alert('Disculpe, existió un problema');
+                            }     
+                        },
+                         success: function(data) {
+
+
+                        // var cadena = JSON.stringify(data);
+                         var materias= verTipoArchivo(data);
+                                var message='<select id="clase_vehiculo_servicio_id"  onclick="consultarDias();" name="clase_vehiculo_servicio_id"  class="form-control">'+materias+
+                                            '</select>';
+                               $("#cmbServicio").empty();
+                               $("#cmbServicio").append(message);
+                                $("#clase_vehiculo_servicio_id").val(servicio_id);  
+                     },
+                     complete: function() {
+                       // setTimeout($.unblockUI, 1000);
+                    }
+                       
+                   });
+
+                    function verTipoArchivo(data){
+                         var tregistros = '<option value="">Servicios..</option>';
+                             for(var i in data){
+                                 tregistros =tregistros + '<option value='+data[i].clase_vehiculo_servicio_id+'>'+ data[i].tipo_servicio.nombre +' </option>';
+
+                          }
+                            return tregistros;
+                    }
+            } 
+          
+              
+        }
+   
 
   });   
  </script>  

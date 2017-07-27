@@ -45,7 +45,7 @@ class ClienteVehiculo extends Model
     }
 
     public function detServiciosCliente(){
-        return $this->hasMany(DetServiciosCliente::class, 'det_servicios_cliente_id'); 
+        return $this->hasMany(DetServiciosCliente::class, 'cliente_vehiculo_id'); 
     }
 
 
@@ -64,7 +64,10 @@ class ClienteVehiculo extends Model
 
      public static function buscarClienteVehiculoXId($cliente_id){
 
-        $lstClienteVehiculo = ClienteVehiculo::with('estado','vehiculo','cliente', 'vehiculo.claseVehiculo','vehiculo.estado')->where('cliente_id','=',$cliente_id)->orderBy('cliente_vehiculo_id', 'desc')->get();
+        $lstClienteVehiculo = ClienteVehiculo::with('estado','vehiculo','cliente', 'vehiculo.claseVehiculo','vehiculo.estado')
+           ->where('cliente_id','=',$cliente_id)
+           ->where('estado_id','=', Estado::$estadoActivo)
+           ->orderBy('cliente_vehiculo_id', 'desc')->get();
 
         return  $lstClienteVehiculo; 
      }
@@ -75,6 +78,16 @@ class ClienteVehiculo extends Model
         ->where('cliente_vehiculo_id','=',$cliente_vehiculo_id)
         ->where('vehiculo_id','=',$vehiculo_id)
         ->orderBy('cliente_vehiculo_id', 'desc')->get();
+
+        return  $lstClienteVehiculo; 
+     }
+
+     public static function buscarPorclienteYvehiculo($cliente_id, $vehiculo_id){
+
+        $lstClienteVehiculo = ClienteVehiculo::with('estado','vehiculo','cliente', 'vehiculo.claseVehiculo','vehiculo.estado')
+        ->where('cliente_id','=',$cliente_id)
+        ->where('vehiculo_id','=',$vehiculo_id)
+        ->where('estado_id','=', Estado::$estadoActivo)->first();
 
         return  $lstClienteVehiculo; 
      }
