@@ -52,7 +52,7 @@
         {!!Html::style('../css/dataTables/dataTables.bootstrap.min.css') !!}
         {!!Html::style('../css/dataTables/responsive.bootstrap.min.css') !!}
 
-        
+
         {!!Html::style('../css/dataTables/jquery.dataTables.min.css') !!}
         {!!Html::style('../css/dataTables/buttons.dataTables.min.css') !!}
 
@@ -305,27 +305,26 @@
     
 
        
-    <script src="../js/jquery.blockUI.js"></script>
-    <script src="../js/jquery-ui.custom.min.js"></script>
-    <script src="../js/jquery.ui.touch-punch.min.js"></script>
-  <!--  <script src="../js/jquery.easypiechart.min.js"></script>
-    <script src="../js/jquery.sparkline.index.min.js"></script>
-    <script src="../js/jquery.flot.min.js"></script>
-    <script src="../js/jquery.flot.pie.min.js"></script>
-    <script src="../js/jquery.flot.resize.min.js"></script>-->
-     
-    <!-- ace scripts -->
-    <script src="../js/ace-elements.min.js"></script>
-    <script src="../js/ace.min.js"></script>
-     
-    <script src="../js/jquery-ui.min.js"></script>
-    <script src="../js/bootbox.min.js"></script>
-    <script src="../js/moment.min.js"></script>
+    
       
 
 
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
 
     <script src="../bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+     <script src="../js/dataTables/dataTables.responsive.min.js"></script>
+    <script src="../js/dataTables.buttons.min.js"></script>
+
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
+
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
+
+
+
     <script src="../bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
     <script src="../js/dataTables/jquery.selectable-list.js"></script>
       
@@ -334,13 +333,7 @@
     
    
             
-    <script src="../js/dataTables/dataTables.responsive.min.js"></script>
-    <script src="../js/dataTables.buttons.min.js"></script>
-    <script src="../js/pdfmake.min.js"></script>
-
-    <script src="../js/vfs_fonts.js"></script>
-    <script src="../js/buttons.html5.min.js"></script>
-
+   
         
                     
     
