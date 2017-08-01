@@ -52,6 +52,18 @@ $lstServiciosCliente=DetServiciosCliente::with('serviciosCliente.cliente', 'clie
 
 
     }
+
+     public static function  cargarPorFechaServicios($fechaInicio , $fechaFin){
+
+       $lstServiciosCliente=ServiciosCliente::with('cliente')
+                                    ->where('fecha_ingreso','>=', $fechaInicio) 
+                                    ->where('fecha_ingreso','<=', $fechaFin)
+                                    ->get();
+       
+        return  $lstServiciosCliente;                                          
+
+
+    }
     
 
 }

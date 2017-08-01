@@ -241,7 +241,7 @@ class ServiciosClienteController extends Controller
 
 
 
-             Session::flash('message', 'Se ha guardado con exíto. ');
+             Session::flash('message', 'Se genero la solicitud de servicio N# '.$objClienteVehiculo->cliente_vehiculo_id.'');
                 
 
 

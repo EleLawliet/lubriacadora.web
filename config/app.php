@@ -179,6 +179,9 @@ return [
 
          Collective\Html\HtmlServiceProvider::class,
 
+
+        Barryvdh\DomPDF\ServiceProvider::class,
+
     ],
 
     /*
@@ -229,6 +232,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Form' => Collective\Html\FormFacade::class,
+         'PDF' => Barryvdh\DomPDF\Facade::class,
         
     ],
 

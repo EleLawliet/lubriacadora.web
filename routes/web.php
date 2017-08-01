@@ -68,3 +68,8 @@ Route::post('/guardarInsumos',  'Servicios\InsumosController@guardarInsumos');
 Route::post('/cambioEstadoInsumo',     'Servicios\InsumosController@cambioEstadoInsumo');
 Route::post('/validaNombreInsumos',     'Servicios\InsumosController@validaNombreInsumos');
 
+
+//
+Route::resource('/reporteServicios',  'Reporte\ReporteServiciosController');
+Route::post('/cargarPorFechaServicios',  'Reporte\ReporteServiciosController@cargarPorFechaServicios');
+

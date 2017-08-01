@@ -35,7 +35,7 @@ class Insumos extends Model
     }
     
     public function detServiciosCliente(){
-        return $this->hasMany(DetServiciosCliente::class, 'det_servicios_cliente_id'); 
+        return $this->hasMany(DetServiciosCliente::class, 'insumos_id'); 
     }
 
     public static function cargarInsumos(){

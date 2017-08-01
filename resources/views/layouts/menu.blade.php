@@ -9,12 +9,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Fast-Duty</title>
-     <link rel="shortcut icon" href="../imagenes/Lubriauto.png" />
+     <link rel="shortcut icon" href="../imagenes/LUBRIAUTO.ico" />
     <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">   
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta charset="utf-8" />
-        <title>Dashboard - Ace Admin</title>
 
         <meta name="description" content="overview &amp; stats" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -61,6 +60,7 @@
         {!!Html::script('../js/dataTables/jquery.dataTables.min.js')!!}
         {!!Html::script('../js/dataTables/dataTables.bootstrap.min.js')!!}
         {!!Html::script('../js/dataTables/jquery.selectable-list.js')!!}
+        {!!Html::script('../js/moment.min.js')!!}
 
         
     
@@ -268,6 +268,33 @@
                         </ul>
                     </li>
 
+                      <li class="">
+                        <a href="#" class="dropdown-toggle">
+                            <i class="menu-icon fa fa-tag"></i>
+                            <span class="menu-text"> Reporte </span>
+
+                            <b class="arrow fa fa-angle-down"></b>
+                        </a>
+
+                        <b class="arrow"></b>
+
+                        <ul class="submenu">
+                            <li class="">
+                                <a href="reporteServicios">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Reporte Servicios
+                                </a>
+
+                                <b class="arrow"></b>
+                            </li>
+
+
+                       
+
+
+                           
+                        </ul>
+                    </li>
                  
                 </ul><!-- /.nav-list -->
 
@@ -306,7 +333,24 @@
 
        
     
-      
+          
+    <script src="../js/jquery.blockUI.js"></script>
+    <script src="../js/jquery-ui.custom.min.js"></script>
+    <script src="../js/jquery.ui.touch-punch.min.js"></script>
+  <!--  <script src="../js/jquery.easypiechart.min.js"></script>
+    <script src="../js/jquery.sparkline.index.min.js"></script>
+    <script src="../js/jquery.flot.min.js"></script>
+    <script src="../js/jquery.flot.pie.min.js"></script>
+    <script src="../js/jquery.flot.resize.min.js"></script>-->
+     
+    <!-- ace scripts -->
+    <script src="../js/ace-elements.min.js"></script>
+    <script src="../js/ace.min.js"></script>
+     
+    <script src="../js/jquery-3.0.0.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+    <script src="../js/bootbox.min.js"></script>
+   
 
 
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -315,10 +359,6 @@
     <script src="../bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
      <script src="../js/dataTables/dataTables.responsive.min.js"></script>
     <script src="../js/dataTables.buttons.min.js"></script>
-
-    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
-
     <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>
     <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
@@ -332,8 +372,14 @@
     
     
    
-            
-   
+                        
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
+
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
+
         
                     
     

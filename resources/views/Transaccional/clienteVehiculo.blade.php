@@ -53,7 +53,7 @@
                         </div>
                   
          <div class="row"> 
-          <div class="col-sm-10">     
+          <div class="">     
                
 
               <div class="form-group ">
@@ -159,8 +159,26 @@
                                 <i class="fa fa-plus-circle fa-2x"></i>
                     </a>
               </div>
+             
 
-              <hr align="left" noshade="noshade" size="2" width="120%" />
+              
+            </div>  
+             <div class="form-group ">
+                  <label  class="col-xs-12 col-sm-2 control-label no-padding-right">Descripción</label>
+                    <div class="col-xs-12 col-sm-3">
+                    
+                          <textarea  name="descripcion"  maxlength="120"  id="descripcion" class="width-100" ></textarea>
+                       
+                      </span>
+                    </div>
+              </div>
+      </div>       
+                    
+
+
+                  </form>
+
+                  <hr align="left" noshade="noshade" size="2" width="120%" />
               <div class="form-group ">
                    <div class="col-xs-3 col-md-8">  
                    </div>
@@ -168,23 +186,17 @@
                           <button id="btn_editar" class="btn btn-primary " type="button"  />  Guardar</button> 
 
                     </div>
-                                        <div class="col-xs-3 col-md-2">  
-                                                                    <button class ="btn btn-primary" id="btn_limpiar" type="button"  > Limpiar </button> 
+                      <div class="col-xs-3 col-md-2">  
+                                                  <button class ="btn btn-primary" id="btn_limpiar" type="button"  > Limpiar </button> 
 
-                                        </div>
+                      </div>
 
               </div>
-            </div>  
-      </div>       
-                    <div class="form-group "> 
+                     <div class="form-group "> 
                            <div class="panel-heading">Listado de Servicios</div>
                                <div id="tbl_vehiculo"></div> 
                                 
                     </div> 
-
-
-                  </form>
-                  
                 </div>
             </div>
         </div>
@@ -462,7 +474,7 @@ $(document).ready(function () {
 
                                 }else{
                                     
-                                     mensajePersonalizado("", 'No se encontrarón registros con cedula N. '+cedula+'');
+                             mensajePersonalizado("", 'No se encontro la solicitud de servicios N. '+servicios_ciente_id+'');
                                 }
            
                               },
@@ -493,6 +505,7 @@ $(document).ready(function () {
 
       $("#tbl_vehiculo").append("");
       $("#select_id").val("");
+      
       menu=[];
       document.getElementById('tbl_vehiculo').innerHTML = ""; 
        limpiarMensajes();
@@ -503,7 +516,7 @@ $(document).ready(function () {
   $("#btn_limpiar").click(function (event) {
      limpiar();
      $("#cedula").val("");
-
+     $("#servicios_ciente_id").val("");
 
   }); 
 
@@ -773,12 +786,13 @@ function addAEvent(){
       var apellido=$("#apellido").val();
       var cedula=$("#cedula").val();
       var cliente_id= $("#cliente_id").val();
-
+      var descripcion=$("#descripcion").val();
       
 
       bValid = bValid && validarCampoLleno(nombre, 'Nombre');
       bValid = bValid && validarCampoLleno(apellido, 'Apellido');
       bValid = bValid && validarCampoLleno(cedula, 'Cedula');
+      bValid = bValid && validarCampoLleno(descripcion, 'descripcion');
       
 
 
@@ -812,6 +826,7 @@ function addAEvent(){
                       objVehiculo["cantidad_cambio"] = cantidad_cambio;
                       objVehiculo["vehiculo_id"] = vehiculo_id;
                       objVehiculo["cliente_id"] =cliente_id;
+                      objVehiculo["descripcion"] =descripcion;
 
                       
                     
@@ -831,7 +846,7 @@ function addAEvent(){
                        $.ajax({
                           url: '{{ url('/ingresoServiciosCliente') }}',
                           type: 'post',
-                          data: {'lstDetServicioCliente':lstDetServicioCliente, 'cliente_id': cliente_id},
+                          data: {'lstDetServicioCliente':lstDetServicioCliente, 'cliente_id': cliente_id, 'descripcion':descripcion},
                            beforeSend: function(){
                             },
                            success: function(data) {  
