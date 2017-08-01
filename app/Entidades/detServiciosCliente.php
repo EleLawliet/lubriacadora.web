@@ -3,7 +3,7 @@
 namespace App\Entidades;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Carbon\Carbon;
 class DetServiciosCliente extends Model
 {
     public $timestamps = false;
@@ -65,7 +65,8 @@ class DetServiciosCliente extends Model
 
         $lstDetServiciosCliente = DetServiciosCliente::with(['claseVehiculoServicio.tipoServicio','claseVehiculoServicio.claseVehiculo','claseVehiculoServicio.TipoTiempo','insumos'])
             ->where('cliente_vehiculo_id','=', $cliente_vehiculo_id)
-            ->where('estado_id','=', Estado::$estadoActivo)->get();
+            ->where('estado_id','=', Estado::$estadoActivo)
+            ->where('fecha_sustitucion','>' ,Carbon::now())->get();
 
         $arrayData=[];
        
