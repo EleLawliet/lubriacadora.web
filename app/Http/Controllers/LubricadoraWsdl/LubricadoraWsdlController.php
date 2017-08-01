@@ -73,7 +73,7 @@ class LubricadoraWsdlController extends Controller
 
             //se recuperan los datos por comunidad
             $datos = Cliente::buscarCedulaVehicles($cedula);
-            dd($datos);
+            
             //se arma e inicializa el codigo y el response de la firma
             $statusCode = 200;
 

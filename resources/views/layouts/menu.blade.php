@@ -270,7 +270,7 @@
 
                       <li class="">
                         <a href="#" class="dropdown-toggle">
-                            <i class="menu-icon fa fa-tag"></i>
+                            <i class="menu-icon fa fa-file-pdf-o"></i>
                             <span class="menu-text"> Reporte </span>
 
                             <b class="arrow fa fa-angle-down"></b>

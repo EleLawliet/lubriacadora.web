@@ -7,19 +7,18 @@
 
   <div class="page-header">
               <h1>
-                Tipo Servicios
+                servicios por fecha
                 <small>
                   <i class="ace-icon fa fa-angle-double-right"></i>
-                  mantenimiento 
+                  Reporte 
                 </small>
               </h1>
             </div><!-- /.page-header -->
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Ingreso Tipo Servicio</div>
+            <div >
 
-                <div class="panel-body">
+                <div>
 
                
                 <form class="form-horizontal" id="sample-form" method="POST" enctype="multipart/form-data"  action="{{url('/guardarTipoServicio')}}" role="form">
@@ -50,40 +49,36 @@
                         <div id="errores" class=" "> 
                             <p class="validateTips"></p> 
                         </div> 
-                       
-                    <div class="form-group ">
-                                <label for="" class="col-xs-12 col-sm-3 control-label no-padding-right">Fecha Inicio</label>
+                          <div class="row">         
+                                <div class="form-group ">
 
-                    <div class="col-xs-12 col-sm-5">
-                      <span class="block input-icon input-icon-right">
-                        <input name="fechaIni" type="date" id="fechaIni" class="width-100" />
-                       
-                      </span>
-                    </div>
+                                            <label for="" class="col-xs-5 col-sm-2 control-label no-padding-right">Fecha Inicio</label>
+                                            <div class="col-xs-12 col-sm-3">
+                                             
+                                                <input name="fechaIni" type="date" id="fechaIni" class="width-100" />                                                                  
+                                            </div>
+                                           
                                
-                    </div>
-                    <div class="form-group ">
-                                <label for="" class="col-xs-12 col-sm-3 control-label no-padding-right">Fecha fin</label>
+                                            <label class="col-xs-5 col-sm-2 control-label no-padding-right">Fecha fin</label>
+                                            <div class="col-xs-10 col-sm-3">
+                                            
+                                                <input name="fechaFin" type="date" id="fechaFin" class="width-100" />
+                                               
+                                            
+                                            </div>  
 
-                    <div class="col-xs-12 col-sm-5">
-                      <span class="block input-icon input-icon-right">
-                        <input name="fechaFin" type="date" id="fechaFin" class="width-100" />
-                       
-                      </span>
-                    </div>    
-                    </div>
-                    <div class="form-group "> 
-                                <div class="col-md-4"></div>
-                                
-                               
-                                <br><button class="btn btn-primary" id="btn_buscar" type="button"  > Consultar </button> 
-                                
+                                             <button class="btn btn-primary" style="border: 2px solid #FFF;" id="btn_buscar" type="button"  > Consultar </button>  
                                 </div>
+
+                         </div>       
+                   
                                 
-                          </div> 
+                      </div> 
                   </form>
+
+                    <hr align="left" noshade="noshade" size="2" width="120%" />
                     <div class="form-group "> 
-                        <div class="panel-heading">LISTADO DE VEHICULOS</div>
+                        <div class="panel-heading">LISTADO DE SERVICIOS POR RANGO DE FECHA</div>
                                <div id="tbl_servicio"></div> 
                                 
                           </div> 
@@ -130,6 +125,7 @@ $(document).ready(function () {
                                for(var i in data){
 
                                  data[i]['Nombre']=data[i].cliente.nombre+' '+data[i].cliente.apellido;
+                                 data[i]['cedula']=data[i].cliente.cedula;
                                  menu.push(data[i]);
                                  
                                }
@@ -165,7 +161,7 @@ $(document).ready(function () {
                                              buttons: [
                                                 {
                                                     extend: 'pdfHtml5',
-                                                     text: 'Save current page',
+                                                     text: 'pdf',
                                                     download: 'open',
                                                       customize: function ( doc ) {
                
@@ -178,8 +174,8 @@ $(document).ready(function () {
 
                   doc.content.splice( 2, 0, {
                     margin: [ 0, 0, 0, 12 ],
-                    alignment: 'center',
-                     text: 'Informe de ordenes de servicios realizado en la fecha del '+fechaInicio+'   al '+fechaFin+' ',
+                    alignment: 'left',
+                     text: 'Informe de ordenes de servicios realizado en la fecha desde '+fechaInicio+' Hasta '+fechaFin+' ',
                   });    
                
             }
@@ -206,12 +202,13 @@ $(document).ready(function () {
         
         function dibujatabla2(menu){
 
-         var tabla = '<table id="tblServicio" class="display" >'
+         var tabla = '<table  width="100%" id="tblServicio" class="display" >'
         tabla+= '<thead>'+
                 '<tr>'+
                    
                      '<th>N. Orden</th>'+
                      '<th>Nombre Cliente</th>'+
+                      '<th>Cedula</th>'+
                      '<th>Fecha Ingreso</th>'+
                      '<th>Descripción</th>'+
                  '</tr>'+
@@ -225,7 +222,8 @@ $(document).ready(function () {
            tabla += '<tr>'
        
           +'<td>'+menu[i].servicios_cliente_id+'</td>'
-          +'<td>'+menu[i].Nombre+'</td>' 
+          +'<td>'+menu[i].Nombre+'</td>'
+          +'<td>'+menu[i].cedula+'</td>' 
           +'<td>'+menu[i].fecha_ingreso+'</td>'
           +'<td>'+menu[i].descripcion+'</td></tr>';
           
