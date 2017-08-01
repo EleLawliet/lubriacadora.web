@@ -43,18 +43,32 @@ class LubricadoraWsdlController extends Controller
     			//se recuperan los datos por comunidad
 				 $datos = Cliente::buscarCedula($request->cedula);
     			
-    			
-    			//se arma e inicializa el codigo y el response de la firma
-    			$statusCode = 200;
+    			 
+                    if(!empty($datos) || $datos!=null) {   
 
-    			$response = [
-    					'codigo'  => '000',
-    					'mensaje' => 'Consulta de datos exitosa!',
-    					'datos' => ['nombre' => $datos->nombre
-		    							,'apellido' => $datos->apellido
-		    							,'cedula' => $datos->cedula
-										,'email' => $datos->correo]
-    			];
+                			//se arma e inicializa el codigo y el response de la firma
+                			$statusCode = 200;
+
+                			$response = [
+                					'codigo'  => '000',
+                					'mensaje' => 'Consulta de datos exitosa!',
+                					'datos' => ['nombre' => $datos->nombre
+            		    							,'apellido' => $datos->apellido
+            		    							,'cedula' => $datos->cedula
+            										,'email' => $datos->correo]
+                			];
+
+                    }else{ 
+            
+                              $statusCode = 200;
+                                    $response = [
+                                    'codigo'  => '001',
+                                    'mensaje' => 'Error en los datos de entrada!'
+                                    ];
+
+                    }          
+
+
     		} catch (\RuntimeException $e) {
     			//ocurre un error recuperando los datos por comunidad
     			$statusCode = 200;
@@ -75,13 +89,26 @@ class LubricadoraWsdlController extends Controller
             $datos = Cliente::buscarCedulaVehicles($cedula);
             
             //se arma e inicializa el codigo y el response de la firma
-            $statusCode = 200;
+             if(!empty($datos) || $datos!=null) {
 
-            $response = [
-                'codigo'  => '000',
-                'mensaje' => 'Consulta de datos exitosa!',
-                'datos' => $datos
-            ];
+                    $statusCode = 200;
+
+                    $response = [
+                        'codigo'  => '000',
+                        'mensaje' => 'Consulta de datos exitosa!',
+                        'datos' => $datos
+                    ];
+            }else{ 
+            
+                      $statusCode = 200;
+                            $response = [
+                            'codigo'  => '001',
+                            'mensaje' => 'Error en los datos de entrada!'
+                            ];
+
+             }                        
+
+
         } catch (\RuntimeException $e) {
             //ocurre un error recuperando los datos por comunidad
             $statusCode = 200;
@@ -104,13 +131,23 @@ class LubricadoraWsdlController extends Controller
             $datos = Tips::buscarTips();
             
             //se arma e inicializa el codigo y el response de la firma
-            $statusCode = 200;
+             if(!empty($datos) || $datos!=null) {
+                        $statusCode = 200;
 
-            $response = [
-                'codigo'  => '000',
-                'mensaje' => 'Consulta de datos exitosa!',
-                'datos' => $datos
-            ];
+                        $response = [
+                            'codigo'  => '000',
+                            'mensaje' => 'Consulta de datos exitosa!',
+                            'datos' => $datos
+                        ];
+               }else{
+                             $statusCode = 200;
+                            $response = [
+                            'codigo'  => '001',
+                            'mensaje' => 'Error en los datos de entrada!'
+                            ];
+
+                    }             
+
         } catch (\RuntimeException $e) {
             //ocurre un error recuperando los datos por comunidad
             $statusCode = 200;
@@ -129,15 +166,24 @@ class LubricadoraWsdlController extends Controller
 			            //se recuperan los datos por comunidad
 			            $datos = DetServiciosCliente::buscarServiciosClienteXvehiculo($cliente_vehiculo_id);
 			            
-			           
-			            //se arma e inicializa el codigo y el response de la firma
-			            $statusCode = 200;
+			            if(!empty($datos) || $datos!=null) {
+        			            //se arma e inicializa el codigo y el response de la firma
+        			            $statusCode = 200;
 
-			            $response = [
-			                'codigo'  => '000',
-			                'mensaje' => 'Consulta de datos exitosa!',
-			                'datos' => $datos
-			            ];
+        			            $response = [
+        			                'codigo'  => '000',
+        			                'mensaje' => 'Consulta de datos exitosa!',
+        			                'datos' => $datos
+        			            ];
+                         }else{
+                             $statusCode = 200;
+                            $response = [
+                            'codigo'  => '001',
+                            'mensaje' => 'Error en los datos de entrada!'
+                            ];
+
+                         }       
+
 			        } catch (\RuntimeException $e) {
 			            //ocurre un error recuperando los datos por comunidad
 			            $statusCode = 200;

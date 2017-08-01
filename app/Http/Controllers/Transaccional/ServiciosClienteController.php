@@ -35,7 +35,7 @@ class ServiciosClienteController extends Controller
 
         $lstClaseVehiculo=ClaseVehiculo::all();
         $lstEstado=Estado::all();
-        $lstInsumos=Insumos::all();
+        $lstInsumos=Insumos::cargarInsumos();
         $fecha=Carbon::now();
         
           return view('Transaccional.clienteVehiculo', compact('lstClaseVehiculo','lstEstado','lstInsumos','fecha')); 

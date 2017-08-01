@@ -40,7 +40,9 @@ class Insumos extends Model
 
     public static function cargarInsumos(){
 
-        $lstInsumos = Insumos::with('estado')->get();
+        $lstInsumos = Insumos::with('estado')
+        ->where('estado_id','=', Estado::$estadoActivo)->get();
+
         return $lstInsumos;  
         
 
