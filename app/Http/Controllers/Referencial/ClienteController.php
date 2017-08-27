@@ -160,11 +160,20 @@ class ClienteController extends Controller
                                 $objVehiculo->fecha_modificacion=Carbon::now();
                                 $objVehiculo->usuario_modificacion=Auth::user()->id;
                                 $objVehiculo->save();
+
+                                 $obClienteVehiculo=  ClienteVehiculo::find($key->cliente_vehiculo_id);
+                                 $obClienteVehiculo->estado_id=$lstVehiculo[$d]['estado_id'];
+                                 $obClienteVehiculo->save();
+
                                 break;
 
-                            }  
+                            } 
+
+
 
                     }
+
+
         
                }    
 

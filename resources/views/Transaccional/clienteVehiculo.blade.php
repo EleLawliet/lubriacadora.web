@@ -7,7 +7,7 @@
 
   <div class="page-header">
               <h1>
-                Cliente Vehiculo
+                Servicios Vehiculo
                 <small>
                   <i class="ace-icon fa fa-angle-double-right"></i>
                   Transaccional 
@@ -15,7 +15,7 @@
               </h1>
             </div><!-- /.page-header -->
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-9 col-md-offset-1">
             <div class="">
                
                 <div class="">
@@ -101,9 +101,12 @@
               <div class="form-group ">
                     <span class="block input-icon input-icon-right">
                     <label  for=""  class="col-xs-5 col-sm-2 control-label no-padding-right">vehículos</label>
-                    <div class="col-xs-5 col-sm-7">
+                    <div class="col-xs-5 col-sm-5">
                          <div id="cmb_vehiculos"></div>
                     </div> 
+
+                      <label  for=""  class="col-xs-5 col-sm-2 control-label no-padding-right">Insumos</label>
+
                     <div class="col-xs-1 col-sm-3">            
                       <select id="insumos_id" name="insumos_id" class="form-control" data-placeholder="Click to Choose...">
 
@@ -127,8 +130,8 @@
                       </span>
                     </div>
 
-                     
-                    <div class="col-xs-1 col-sm-6">
+                      <label for="" class="col-xs-12 col-sm-3 control-label no-padding-right">Servicios</label>
+                    <div class="col-xs-1 col-sm-4">
                       <span class="block input-icon input-icon-right">
                         
                         <div id="cmbServicio"></div>

@@ -254,7 +254,7 @@
                             <li class="">
                                 <a href="serviciosCliente">
                                     <i class="menu-icon fa fa-caret-right"></i>
-                                    Servicios Cliente
+                                    Servicios Vehiculo
                                 </a>
 
                                 <b class="arrow"></b>

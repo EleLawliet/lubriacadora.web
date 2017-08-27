@@ -241,7 +241,7 @@ class ServiciosClienteController extends Controller
 
 
 
-             Session::flash('message', 'Se genero la solicitud de servicio N# '.$objServiciosCliente->servicios_ciente_id.'');
+             Session::flash('message', 'Se genero la solicitud de servicio N# '.$objServiciosCliente->servicios_cliente_id.'');
                 
 
 

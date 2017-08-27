@@ -15,7 +15,7 @@
               </h1>
             </div><!-- /.page-header -->
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-9 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">Registro de clase vehiculo por servicio</div>
 

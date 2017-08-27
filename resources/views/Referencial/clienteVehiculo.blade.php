@@ -7,7 +7,7 @@
 
   <div class="page-header">
               <h1>
-                Registro de cliente
+                Registro de cliente / vehiculo
                 <small>
                   <i class="ace-icon fa fa-angle-double-right"></i>
                   Referencial 
@@ -15,11 +15,9 @@
               </h1>
             </div><!-- /.page-header -->
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
-                <div class="panel-heading">Registro de Cliente / vehiculo</div>
-
-                <div class="">
+        <div class="col-md-9 col-md-offset-1">
+            <div class=" ">
+                <div >
 
                <br>
                 <form class="form-horizontal" id="sample-form" method="POST" enctype="multipart/form-data"  action="{{url('/guardarTipoServicio')}}" role="form">
@@ -62,7 +60,7 @@
                       <span class="block input-icon input-icon-right">
                         <input name="nombre" type="text" id="nombre" class="width-100" />
                         
-                        <input name="nombre" type="hidden" id="cliente_id" class="width-100" />
+                        <input name="nombre" maxlength="45" type="hidden" id="cliente_id" class="width-100" />
                       </span>
                     </div>
                                 <div class="help-block col-xs-12 col-sm-reset inline"> </div>
@@ -73,19 +71,31 @@
 
                     <div class="col-xs-12 col-sm-8">
                       <span class="block input-icon input-icon-right">
-                        <input name="apellido" type="text" id="apellido" class="width-100" />
+                        <input name="apellido" maxlength="45" type="text" id="apellido" class="width-100" />
                        
                       </span>
                     </div>
                                 <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+              </div>
+
+              <div class="form-group ">
+                                <label for="" class="col-xs-10 col-sm-3 control-label no-padding-right">Tipo Ident.</label>                     
+                  <div class="col-xs-12 col-sm-8">              
+                     <select id="tipo_identificacion" onchange="validaCedula()"  name="tipo_identificacion" class="form-control" data-placeholder="Click to Choose...">
+                          <option value="">seleccione...</option>
+                          <option value="1">cedula</option>
+                          <option  value="2">Ruc</option> 
+                      </select>
+                  </div>    
+
               </div>
               <div class="form-group ">
                                 <label for="" class="col-xs-12 col-sm-3 control-label no-padding-right">Cedula</label>
                       
                     <div class="col-xs-12 col-sm-8">
                       <span class="block input-icon input-icon-right">
-                        <input name="cedula" type="number" id="cedula" class="width-100" />
-                        <a></a>
+                        <input name="cedula" onchange="validaCedula()"  type="number" id="cedula" class="width-100" />
+                       
                       </span>
                     </div>
                      <a class="btn_buscar"  href="#" data-toggle="modal"  data-placement="left" title= "Consulta Trabajador">
@@ -120,7 +130,7 @@
 
                     <div class="col-xs-12 col-sm-8">
                       <span class="block input-icon input-icon-right">
-                        <input name="correo" type="text" id="correo" class="width-100" />
+                        <input name="correo" maxlength="45" type="email" id="correo" class="width-100" />
                        
                       </span>
                     </div>
@@ -131,7 +141,7 @@
 
                     <div class="col-xs-12 col-sm-8">
                       <span class="block input-icon input-icon-right">
-                        <input name="direccion" type="text" id="direccion" class="width-100" />
+                        <input name="direccion" type="text" id="direccion" maxlength="45" class="width-100" />
                        
                       </span>
                     </div>
@@ -146,7 +156,7 @@
 
                     <div class="col-xs-12 col-sm-7">
                       <span class="block input-icon input-icon-right">
-                        <input name="marca" type="text" id="marca" class="width-100" />
+                        <input name="marca" maxlength="45" type="text" id="marca" class="width-100" />
                         <input name="select_id" type="hidden" id="select_id" class="width-100" />
                        
                       </span>
@@ -158,7 +168,7 @@
 
                     <div class="col-xs-12 col-sm-7">
                       <span class="block input-icon input-icon-right">
-                        <input name="color" type="text" id="color" class="width-100" />
+                        <input name="color" maxlength="20" type="text" id="color" class="width-100" />
                        
                       </span>
                     </div>
@@ -166,11 +176,11 @@
                     </div>
 
                      <div class="form-group ">
-                                <label for="" class="col-xs-12 col-sm-3 control-label no-padding-right">Placa</label>
+                                <label for=""  class="col-xs-12 col-sm-3 control-label no-padding-right">Placa</label>
 
                     <div class="col-xs-12 col-sm-7">
                       <span class="block input-icon input-icon-right">
-                        <input name="placa" type="text" id="placa" class="width-100" />
+                        <input name="placa" maxlength="15" style="text-transform: uppercase;" type="text" id="placa" class="width-100" />
                        
                       </span>
                     </div>
@@ -275,22 +285,180 @@
     </div>
 </div>
 
-<script type="text/javascript">
-
-   
-</script>
 
 @endsection
 @section("scripts")
 
-  <script type="text/javascript">
+<script type="text/javascript">
+    function validaCedula(){
+
+          var estado_seleccionado=$("#tipo_identificacion").val();
+          var cedula=$("#cedula").val();
+          if(cedula!=null && cedula!=""){
+              if(estado_seleccionado=="1"){
+                   validarPorCedula();
+              }else {
+                      if(estado_seleccionado=="2"){
+                            
+                        validarRuc(); 
+                      }else{
+                            $('#mensajes').removeClass();
+                            $('#mensajes').addClass('alert alert-danger');
+                            var tips = $("#textoMensaje");
+                            tips.text("Seleccione el tipo Identificación.");
+
+                      }
+              }
+
+          }
+    }
+
+ function validarRuc(){
+             var number=document.getElementById('cedula').value;
+            // var numbera[]=number;
+             var dto =number.length;
+             var valor;
+             var acu=0;
+            if(number==""){
+                    $('#mensajes').removeClass();
+                    $('#mensajes').addClass('alert alert-danger');
+                    var tips = $("#textoMensaje");
+                    tips.text("No has ingresado ruc, porfavor ingresar el datos correspondiente.");
+                    return false;
+              }
+            else{
+                    for (var i=0; i<dto; i++){
+                        valor = number.substring(i,i+1);
+                        if(valor==0||valor==1||valor==2||valor==3||valor==4||valor==5||valor==6||valor==7||valor==8||valor==9){
+                         acu = acu+1;
+                        }
+                    }
+                    if(acu==dto){
+                        while(number.substring(10,13)!=001){
+                             $('#mensajes').removeClass();
+                             $('#mensajes').addClass('alert alert-danger');
+                             var tips = $("#textoMensaje");
+                             tips.text("Los tres últimos dígitos no tienen el código del RUC 001.");
+                             return false; 
+                        }
+                        while(number.substring(0,2)>24){  
+                             $('#mensajes').removeClass();
+                             $('#mensajes').addClass('alert alert-danger');
+                             var tips = $("#textoMensaje");
+                             tips.text("Los dos primeros dígitos no pueden ser mayores a 24.");
+                           return false;
+
+                        }
+                           // alert('Se procederá a analizar el respectivo RUC.');
+                        var porcion1 = number.substring(2,3);
+                        if(porcion1<6){
+                            $('#mensajes').removeClass();
+                            $('#mensajes').addClass('alert alert-success');
+                            var tips = $("#textoMensaje");
+                            tips.text("El RUC está escrito correctamente. El tercer dígito es menor a 6, por lo \ntanto el usuario es una persona natural.");
+                         return true;
+                        }
+                        else{
+                            if(porcion1==6){
+                                 $('#mensajes').removeClass();
+                                 $('#mensajes').addClass('alert alert-success');
+                                 var tips = $("#textoMensaje");   
+                                 tips.text("El RUC está escrito correctamente. El tercer dígito es igual a 6, por lo \ntanto el usuario es una entidad pública.");
+                                 return true;
+                            }
+                            else{
+                                   if(porcion1==9){
+                                        $('#mensajes').removeClass();
+                                        $('#mensajes').addClass('alert alert-success');
+                                        var tips = $("#textoMensaje");
+                                        tips.text("El RUC está escrito correctamente. El tercer dígito es igual a 9, por lo \ntanto el usuario es una sociedad privada.");
+                                        return true;
+                                    }
+                                    else{
+                                         $('#mensajes').removeClass();
+                                         $('#mensajes').addClass('alert alert-success');
+                                         var tips = $("#textoMensaje");
+                                             tips.text("El RUC es incorrecto.");
+                                             return false;
+                                   }
+                           }
+                        }
+                    }else{
+                           $('#mensajes').removeClass();
+                           $('#mensajes').addClass('alert alert-danger');
+                           var tips =$("#textoMensaje");
+                           tips.text("Campo Ruc no ingresar texto.");
+                           return false;
+
+                    }
+             }
+    }
    
 
-</script>
-<script type="text/javascript">
- 
+function validarPorCedula(){
 
+    var cedula = $("#cedula").val();
+         if(cedula.length == 10){
+            var digito_region = cedula.substring(0,2);
+                if( digito_region >= 1 && digito_region <=24 ){
+    var ultimo_digito   = cedula.substring(9,10);
+    var pares = parseInt(cedula.substring(1,2)) + parseInt(cedula.substring(3,4)) + parseInt(cedula.substring(5,6)) + parseInt(cedula.substring(7,8));
+    var numero1 = cedula.substring(0,1);
+    var numero1 = (numero1 * 2);
+    if( numero1 > 9 ){ var numero1 = (numero1 - 9); }
+        var numero3 = cedula.substring(2,3);
+        var numero3 = (numero3 * 2);
+        if( numero3 > 9 ){ var numero3 = (numero3 - 9); }
+            var numero5 = cedula.substring(4,5);
+            var numero5 = (numero5 * 2);
+            if( numero5 > 9 ){ var numero5 = (numero5 - 9); }
+                var numero7 = cedula.substring(6,7);
+                var numero7 = (numero7 * 2);
+                if( numero7 > 9 ){ var numero7 = (numero7 - 9); }
+                    var numero9 = cedula.substring(8,9);
+                    var numero9 = (numero9 * 2);
+                    if( numero9 > 9 ){ var numero9 = (numero9 - 9); }
+                        var impares = numero1 + numero3 + numero5 + numero7 + numero9;
+                        var suma_total = (pares + impares);
+                        var primer_digito_suma = String(suma_total).substring(0,1);
+                        var decena = (parseInt(primer_digito_suma) + 1)  * 10;
+                        var digito_validador = decena - suma_total;
+                        if(digito_validador == 10)
+                          var digito_validador = 0;
+                        if(digito_validador == ultimo_digito){
+                           $('#mensajes').removeClass(); 
+                            $('#mensajes').addClass('alert alert-success'); 
+                            var tips = $("#textoMensaje"); 
+                            tips.text("La cédula es Correcta"); 
+                            return true;
+                        }else{
+                            $('#mensajes').removeClass();
+                            $('#mensajes').addClass('alert alert-danger'); 
+                            var tips = $("#textoMensaje"); 
+                            tips.text("La cédula es Incorrecta"); 
+                            return false;
+                        }
+
+                      }else{
+                        $('#mensajes').removeClass();
+                        $('#mensajes').addClass('alert alert-danger'); 
+                        var tips = $("#textoMensaje"); 
+                        tips.text("La cédula no pertenece a ninguna Ciudad."); 
+                        return false;
+                      }
+                   }else{
+                        $('#mensajes').removeClass();
+                        $('#mensajes').addClass('alert alert-danger'); 
+                        var tips = $("#textoMensaje"); 
+                        tips.text("La cédula no tiene  10 dígitos."); 
+                        return false;
+                   }    
+    }
 $(document).ready(function () {
+
+
+
+
 
    var menu=[];
         $.ajaxSetup({
@@ -302,6 +470,13 @@ $(document).ready(function () {
         $('#tblMateria').DataTable({
                 responsive: true
         });
+
+
+    
+
+   
+
+  
 
   function limpiar(){
       $("#nombre").val("");
